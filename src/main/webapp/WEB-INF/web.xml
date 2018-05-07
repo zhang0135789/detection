@@ -5,7 +5,7 @@
 		 version="3.0">
   <display-name>aa</display-name>
   <welcome-file-list>
-    <welcome-file>a.jsp</welcome-file>
+    <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>
 
   <!-- shiro过滤器定义 -->
