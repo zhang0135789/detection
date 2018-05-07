@@ -2,13 +2,13 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.java1234.blog</groupId>
-  <artifactId>Blog</artifactId>
+  <artifactId>detection</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>Blog Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <build>
-    <finalName>Blog</finalName>
+    <finalName>detection</finalName>
   </build>
   
   <dependencies>
@@ -222,11 +222,11 @@
 	</dependency>
 	
 	<!-- 添加连接池druid支持 -->
-	<dependency>
-		<groupId>com.alibaba</groupId>
-		<artifactId>druid</artifactId>
-		<version>1.0.16</version>
-	</dependency>
+	  <dependency>
+		  <groupId>com.alibaba</groupId>
+		  <artifactId>druid</artifactId>
+		  <version>1.0.16</version>
+	  </dependency>
 	
 	<!-- 添加jsoup支持 -->
 	<dependency>
