@@ -46,7 +46,7 @@ public class BloggerController {
 			return "login";
 		}
 	}
-	
+
 	/**
 	 * 查找博主信息
 	 * @return
