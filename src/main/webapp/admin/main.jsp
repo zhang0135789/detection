@@ -110,7 +110,7 @@
 <div region="center">
 	<div class="easyui-tabs" fit="true" border="false" id="tabs">
 		<div title="首页" data-options="iconCls:'icon-home'">
-			<div align="center" style="padding-top: 100px"><font color="red" size="10">欢迎使用</font></div>
+			<div align="center" style="padding-top: 100px"><font color="#00bfff" size="10">Welcome</font></div>
 		</div>
 	</div>
 </div>
