@@ -84,7 +84,7 @@
  </table>
  <div id="tb">
  	<div>
- 		<a href="javascript:openBlogModifyTab()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">分析</a>
+ 		<a href="javascript:openBlogModifyTab()" class="easyui-linkbutton" iconCls="icon-ok" plain="true">分析</a>
  		<a href="javascript:deleteBlog()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
  	</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
  	<div>

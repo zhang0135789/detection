@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>分析结果页面</title>
+<title>分析结果导出页面</title>
 <link rel="stylesheet" type="text/css" href="<%=path%>/static/jquery-easyui-1.3.3/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="<%=path%>/static/jquery-easyui-1.3.3/themes/icon.css">
 <script type="text/javascript" src="<%=path%>/static/jquery-easyui-1.3.3/jquery.min.js"></script>
@@ -69,22 +69,22 @@
 </script>
 </head>
 <body style="margin: 1px">
-<table id="dg" title="分析结果" class="easyui-datagrid"
+<table id="dg" title="分析结果导出" class="easyui-datagrid"
    fitColumns="true" pagination="true" rownumbers="true"
    url="<%=path%>/admin/blog/list.do" fit="true" toolbar="#tb">
    <thead>
    	<tr>
-   		<th field="cb" checkbox="true" align="center"></th>
-   		<th field="id" width="20" align="center">编号</th>
-   		<th field="title" width="200" align="center" formatter="formatTitle">采集数据名称</th>
-   		<th field="releaseDate" width="50" align="center">采集日期</th>
-   		<th field="blogType" width="50" align="center" formatter="formatBlogType">状态</th>
+		<th field="cb" checkbox="true" align="center"></th>
+		<th field="id" width="20" align="center">编号</th>
+		<th field="title" width="200" align="center" formatter="formatTitle">采集数据名称</th>
+		<th field="releaseDate" width="50" align="center">采集日期</th>
+		<th field="blogType" width="50" align="center" formatter="formatBlogType">状态</th>
    	</tr>
    </thead>
  </table>
  <div id="tb">
  	<div>
- 		<a href="javascript:openBlogModifyTab()" class="easyui-linkbutton" iconCls="icon-search" plain="true">查看</a>
+ 		<a href="javascript:openBlogModifyTab()" class="easyui-linkbutton" iconCls="icon-redo" plain="true">导出excel</a>
  		<%--<a href="javascript:deleteBlog()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>--%>
  	</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
  	<div>
