@@ -76,7 +76,7 @@
 <div id="p" class="easyui-panel" title="" style="padding: 10px">
     <table cellspacing="20px">
         <tr>
-            <td width="80px">采集数据名称：</td>
+            <td width="100px">采集数据名称：</td>
             <td><input type="text" id="title" name="title" style="width: 150px;"/></td>
         </tr>
         <tr>

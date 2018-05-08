@@ -117,12 +117,12 @@
 <div region="west" style="width: 200px" title="导航菜单" split="true">
 	<div class="easyui-accordion" data-options="fit:true,border:false">
 		<div title="数据收集系统" data-options="selected:true,iconCls:'icon-item'" style="padding: 10px">
-			<a href="javascript:openTab('采集数据','writeBlog.jsp','icon-writeblog')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-writeblog'" style="width: 150px">采集数据</a>
+			<a href="javascript:openTab('采集数据','getData.jsp','icon-writeblog')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-writeblog'" style="width: 150px">采集数据</a>
 			<%--<a href="javascript:openTab('评论审核','commentReview.jsp','icon-review')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-review'" style="width: 150px">评论审核</a>--%>
 		</div>
 		<div title="数据分析"  data-options="iconCls:'icon-bkgl'" style="padding:10px;">
-			<a href="javascript:openTab('分析','writeBlog.jsp','icon-writeblog')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-writeblog'" style="width: 150px;">分析</a>
-			<a href="javascript:openTab('分析结果','blogManage.jsp','icon-bkgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-bkgl'" style="width: 150px;">分析结果</a>
+			<a href="javascript:openTab('分析','analyze.jsp','icon-writeblog')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-writeblog'" style="width: 150px;">分析</a>
+			<a href="javascript:openTab('分析结果','analyzeResult.jsp','icon-bkgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-bkgl'" style="width: 150px;">分析结果</a>
 		</div>
 		<%--<div title="分析结果" data-options="iconCls:'icon-bklb'" style="padding:10px">
 			<a href="javascript:openTab('博客类别信息管理','blogTypeManage.jsp','icon-bklb')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-bklb'" style="width: 150px;">博客类别信息管理</a>
