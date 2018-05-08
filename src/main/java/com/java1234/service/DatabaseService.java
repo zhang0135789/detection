@@ -1,5 +1,10 @@
 package com.java1234.service;
 
+import com.java1234.entity.Database;
+
+import java.util.List;
+import java.util.Map;
+
 /**
  * @Author: zz
  * @Description:
@@ -7,4 +12,10 @@ package com.java1234.service;
  * @Modified By
  */
 public interface DatabaseService {
+    /**
+     * ≤È—Ø
+     * @param map
+     * @return
+     */
+    List<Database> list(Object map);
 }
