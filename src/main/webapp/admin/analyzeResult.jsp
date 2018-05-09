@@ -16,9 +16,13 @@
 
 <script type="text/javascript">
 
-	function formatBlogType(val,row){
-		return val.typeName;
-	}
+    function formatState(val,row){
+        if(val == 1) {
+            return  '<font color="#228b22">已分析</font>';
+        }else {
+            return  '<font color="red">未分析</font>';
+        }
+    }
 	
 	function formatTitle(val,row){
 		return "<a target='_blank' href='${pageContext.request.contextPath}/blog/articles/"+row.id+".html'>"+val+"</a>"
@@ -74,11 +78,12 @@
    url="<%=path%>/admin/blog/list.do" fit="true" toolbar="#tb">
    <thead>
    	<tr>
-   		<th field="cb" checkbox="true" align="center"></th>
-   		<th field="id" width="20" align="center">编号</th>
-   		<th field="title" width="200" align="center" formatter="formatTitle">采集数据名称</th>
-   		<th field="releaseDate" width="50" align="center">采集日期</th>
-   		<th field="blogType" width="50" align="center" formatter="formatBlogType">状态</th>
+		<th field="cb" checkbox="true" align="center"></th>
+		<th field="id" width="20" align="center">编号</th>
+		<th field="dataName" width="200" align="center" >采集数据名称</th>
+		<th field="createDate" width="50" align="center">采集日期</th>
+		<th field="stateAnalyze" width="50" align="center" formatter="formatState">状态</th>
+
    	</tr>
    </thead>
  </table>

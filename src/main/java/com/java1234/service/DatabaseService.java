@@ -13,9 +13,16 @@ import java.util.Map;
  */
 public interface DatabaseService {
     /**
-     * 查询
+     * 分页查询查询
      * @param map
      * @return
      */
-    List<Database> list(Object map);
+    List<Database> list(Map<String ,Object> map);
+
+    /**
+     * 查询总数
+     * @param map
+     * @return
+     */
+    Long getTotal(Map<String,Object> map);
 }

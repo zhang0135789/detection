@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Author: zz
@@ -34,7 +32,7 @@ public class DatabaseController {
 
 
     /**
-     * 分页查询博客信息
+     * 分页查询信息
      * @param page
      * @param rows
      * @param s_database
@@ -43,26 +41,29 @@ public class DatabaseController {
      */
     @RequestMapping("/list")
     public String list(@RequestParam(value="page",required=false)String page, @RequestParam(value="rows",required=false)String rows, Database s_database, HttpServletResponse response) throws Exception {
-        PageBean pageBean=new PageBean(Integer.parseInt(page),Integer.parseInt(rows));
-        Map<String,Object> map=new HashMap<String,Object>();
+        PageBean pageBean = new PageBean(Integer.parseInt(page),Integer.parseInt(rows));
+        Map<String,Object> map = new HashMap<String,Object>();
 
 
-        map.put("dataName", StringUtil.formatLike(s_database.getDataName());
+        map.put("dataName", StringUtil.formatLike(s_database.getDataName()));
         map.put("start", pageBean.getStart());
         map.put("size", pageBean.getPageSize());
 
-        List<Database> databaseList=databaseService.list(map);
+        List<Database> databaseList = databaseService.list(map);
+        System.out.println("----------databaseList:"  + databaseList.toString() );
+
         Long total=databaseService.getTotal(map);
-        JSONObject result=new JSONObject();
-        JsonConfig jsonConfig=new JsonConfig();
+
+        JSONObject result = new JSONObject();
+        JsonConfig jsonConfig = new JsonConfig();
         jsonConfig.registerJsonValueProcessor(java.util.Date.class, new DateJsonValueProcessor("yyyy-MM-dd"));
-        JSONArray jsonArray=JSONArray.fromObject(blogList,jsonConfig);
+        JSONArray jsonArray=JSONArray.fromObject(databaseList,jsonConfig);
         result.put("rows", jsonArray);
         result.put("total", total);
 
+        System.out.println("------result" + result);
+
         ResponseUtil.write(response, result);
-
-
 
         return null;
     }

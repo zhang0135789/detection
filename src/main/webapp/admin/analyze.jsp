@@ -16,12 +16,16 @@
 
 <script type="text/javascript">
 
-	function formatBlogType(val,row){
-		return val.typeName;
+	function formatState(val,row){
+	    if(val == 1) {
+	        return  '<font color="#228b22">已分析</font>';
+		}else {
+            return  '<font color="red">未分析</font>';
+		}
 	}
 	
 	function formatTitle(val,row){
-		return "<a target='_blank' href='${pageContext.request.contextPath}/blog/articles/"+row.id+".html'>"+val+"</a>"
+		return "<a target='_blank' href='<%=path%>/blog/articles/"+row.id+".html'>"+val+"</a>"
 	}
 	
 	function searchBlog(){
@@ -30,7 +34,7 @@
 		});
 	}
 	
-	function deleteBlog(){
+	function deleteDatabase(){
 		var selectedRows=$("#dg").datagrid("getSelections");
 		if(selectedRows.length==0){
 			 $.messager.alert("系统提示","请选择要删除的数据！");
@@ -71,21 +75,21 @@
 <body style="margin: 1px">
 <table id="dg" title="分析" class="easyui-datagrid"
    fitColumns="true" pagination="true" rownumbers="true"
-   url="<%=path%>/admin/blog/list.do" fit="true" toolbar="#tb">
+   url="<%=path%>/admin/data/list.do" fit="true" toolbar="#tb">
    <thead>
    	<tr>
 		<th field="cb" checkbox="true" align="center"></th>
 		<th field="id" width="20" align="center">编号</th>
-		<th field="title" width="200" align="center" formatter="formatTitle">采集数据名称</th>
-		<th field="releaseDate" width="50" align="center">采集日期</th>
-		<th field="blogType" width="50" align="center" formatter="formatBlogType">状态</th>
+		<th field="dataName" width="200" align="center" >采集数据名称</th>
+		<th field="createDate" width="50" align="center">采集日期</th>
+		<th field="stateAnalyze" width="50" align="center" formatter="formatState">状态</th>
    	</tr>
    </thead>
  </table>
  <div id="tb">
  	<div>
  		<a href="javascript:openBlogModifyTab()" class="easyui-linkbutton" iconCls="icon-ok" plain="true">分析</a>
- 		<a href="javascript:deleteBlog()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+ 		<a href="javascript:deleteDatabase()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
  	</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
  	<div>
  		&nbsp;标题：&nbsp;<input type="text" id="s_title" size="20" onkeydown="if(event.keyCode==13) searchBlog()"/>
