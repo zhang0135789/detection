@@ -48,9 +48,9 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<listener>
-        <listener-class>com.java1234.service.impl.InitComponent</listener-class>
-    </listener>
+	<!--<listener>-->
+        <!--<listener-class>com.java1234.service.impl.InitComponent</listener-class>-->
+    <!--</listener>-->
 
 	<!-- 添加对springmvc的支持 -->
 	<servlet>

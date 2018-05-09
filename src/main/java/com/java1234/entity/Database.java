@@ -15,7 +15,7 @@ public class Database  {
     private String dataId; //数据随机号，主键
     private String dataName; // 数据名字
     private String filePath; // 数据文件路径
-    private Date upDate; // 采集数据时间
+    private Date createDate; // 采集数据时间
     private Integer stateAnalyze; // 分析状态
     private Date anDate; // 分析时间
     private Integer stateForecast; // 预测状态
@@ -55,12 +55,12 @@ public class Database  {
         this.filePath = filePath;
     }
 
-    public Date getUpDate() {
-        return upDate;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setUpDate(Date upDate) {
-        this.upDate = upDate;
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
     public Integer getStateAnalyze() {
@@ -101,5 +101,21 @@ public class Database  {
 
     public void setDownloadOPath(String downloadOPath) {
         this.downloadOPath = downloadOPath;
+    }
+
+    @Override
+    public String toString() {
+        return "Database{" +
+                "id=" + id +
+                ", dataId='" + dataId + '\'' +
+                ", dataName='" + dataName + '\'' +
+                ", filePath='" + filePath + '\'' +
+                ", createDate=" + createDate +
+                ", stateAnalyze=" + stateAnalyze +
+                ", anDate=" + anDate +
+                ", stateForecast=" + stateForecast +
+                ", foDate=" + foDate +
+                ", downloadOPath='" + downloadOPath + '\'' +
+                '}';
     }
 }
