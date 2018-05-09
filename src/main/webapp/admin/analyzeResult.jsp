@@ -16,17 +16,25 @@
 
 <script type="text/javascript">
 
-    function formatState(val,row){
+    function formatState1(val,row){
         if(val == 1) {
-            return  '<font color="#228b22">已分析</font>';
+            return  '<font color="#228b22">已检测</font>';
         }else {
-            return  '<font color="red">未分析</font>';
+            return  '<font color="red">未检测</font>';
         }
     }
-	
-	function formatTitle(val,row){
-		return "<a target='_blank' href='${pageContext.request.contextPath}/blog/articles/"+row.id+".html'>"+val+"</a>"
-	}
+    function formatState2(val,row){
+        if(val == 1) {
+            return  '<font color="#228b22">已预测</font>';
+        }else {
+            return  '<font color="red">未预测</font>';
+        }
+    }
+
+
+    <%--function formatTitle(val,row){--%>
+		<%--return "<a target='_blank' href='${pageContext.request.contextPath}/blog/articles/"+row.id+".html'>"+val+"</a>"--%>
+	<%--}--%>
 	
 	function searchBlog(){
 		$("#dg").datagrid('load',{
@@ -75,15 +83,15 @@
 <body style="margin: 1px">
 <table id="dg" title="分析结果" class="easyui-datagrid"
    fitColumns="true" pagination="true" rownumbers="true"
-   url="<%=path%>/admin/blog/list.do" fit="true" toolbar="#tb">
+   url="<%=path%>/admin/data/list.do" fit="true" toolbar="#tb">
    <thead>
    	<tr>
-		<th field="cb" checkbox="true" align="center"></th>
-		<th field="id" width="20" align="center">编号</th>
-		<th field="dataName" width="200" align="center" >采集数据名称</th>
-		<th field="createDate" width="50" align="center">采集日期</th>
-		<th field="stateAnalyze" width="50" align="center" formatter="formatState">状态</th>
-
+        <th field="cb" checkbox="true" align="center"></th>
+        <th field="id" width="20" align="center">编号</th>
+        <th field="dataName" width="200" align="center" >采集数据名称</th>
+        <th field="createDate" width="50" align="center">采集日期</th>
+        <th field="stateAnalyze" width="50" align="center" formatter="formatState1">检测状态</th>
+        <th field="stateForecast" width="50" align="center" formatter="formatState2">预测状态</th>
    	</tr>
    </thead>
  </table>
