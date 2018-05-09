@@ -31,9 +31,9 @@
         }
     }
 	
-	function formatTitle(val,row){
-		return "<a target='_blank' href='<%=path%>/blog/articles/"+row.id+".html'>"+val+"</a>"
-	}
+//	function formatTitle(val,row){
+//		return "<a target='_blank' href='<%=path%>/blog/articles/"+row.id+".html'>"+val+"</a>"
+//	}
 	
 	function searchBlog(){
 		$("#dg").datagrid('load',{
