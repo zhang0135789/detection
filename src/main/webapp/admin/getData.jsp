@@ -29,13 +29,13 @@
     <script type="text/javascript">
 
         function submitData() {
-            alert(111);
+            // alert(111);
             var dataName = $("#dataName").val();
             var filepath = $("#fb").val();
             console.log(dataName + "----" + filepath);
             if(dataName == null || dataName == '') {
                 alert("请输入数据名称！");
-            }else if(filepath == null || dataName == '') {
+            }else if(filepath == null || filepath == '' ) {
                 alert("请上传需要检测的数据！");
             }else{
 
@@ -58,16 +58,14 @@
 
         // 重置数据
         function resetValue() {
-            $("#title").val("");
-            $("#blogTypeId").combobox("setValue", "");
-            UE.getEditor('editor').setContent("");
-            $("#keyWord").val("");
+            $("#dataName").val("");
+            $("#fb").val("");
         }
 
-        $('#fb').filebox({
-            buttonText: '选择文件',
-            buttonAlign: 'left'
-        })
+        // $('#fb').filebox({
+        //     buttonText: '选择文件',
+        //     buttonAlign: 'left'
+        // })
 
     </script>
 </head>
@@ -123,7 +121,7 @@
 
             //实例化编辑器
             //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-            var ue = UE.getEditor('editor');
+            // var ue = UE.getEditor('editor');
 
 
     </script>

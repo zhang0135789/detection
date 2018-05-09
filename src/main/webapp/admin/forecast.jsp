@@ -91,7 +91,8 @@
 		<th field="dataName" width="200" align="center" >采集数据名称</th>
 		<th field="createDate" width="50" align="center">采集日期</th>
 		<th field="stateAnalyze" width="50" align="center" formatter="formatState1">检测状态</th>
-		<th field="stateForecast" width="50" align="center" formatter="formatState2">预测状态</th>   	</tr>
+		<th field="stateForecast" width="50" align="center" formatter="formatState2">预测状态</th>
+	</tr>
    </thead>
  </table>
  <div id="tb">
