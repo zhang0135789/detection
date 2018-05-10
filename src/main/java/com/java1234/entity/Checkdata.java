@@ -6,7 +6,7 @@ package com.java1234.entity;
  * @Date: 21:55 2018\5\9 0009
  * @Modified By
  */
-public class CheckData {
+public class Checkdata {
     private int id;
     private String dataId;
     private String scgy;//生产工艺
@@ -23,7 +23,7 @@ public class CheckData {
 
     @Override
     public String toString() {
-        return "CheckData{" +
+        return "Checkdata{" +
                 "id=" + id +
                 ", dataId='" + dataId + '\'' +
                 ", scgy='" + scgy + '\'' +
