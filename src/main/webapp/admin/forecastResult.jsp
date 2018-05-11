@@ -74,7 +74,7 @@
 			 return;
 		 }
 		 var row=selectedRows[0];
-		 window.parent.openTab('修改博客','modifyBlog.jsp?id='+row.id,'icon-writeblog');
+		 window.parent.openTab('修改博客','forecastResultData.jsp?id='+row.id,'icon-writeblog');
 	}
 	
 </script>

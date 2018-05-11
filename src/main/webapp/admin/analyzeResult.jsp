@@ -38,7 +38,7 @@
 	
 	function searchBlog(){
 		$("#dg").datagrid('load',{
-			"title":$("#s_title").val() 
+			"dataName":$("#s_title").val()
 		});
 	}
 	
@@ -76,7 +76,7 @@
 		 }
 		 var row=selectedRows[0];
 
-		 window.parent.openTab('抽样检测详情','resultData.jsp?id='+row.id+'&dataName='+row.dataName,'icon-writeblog');
+		 window.parent.openTab('抽样检测详情','analyzeResultData.jsp?id='+row.id+'&dataName='+row.dataName,'icon-writeblog');
 	}
 	
 </script>
