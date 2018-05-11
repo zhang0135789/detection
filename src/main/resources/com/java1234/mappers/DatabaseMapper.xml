@@ -6,14 +6,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<resultMap type="Database" id="DatabaseResult">
 		<result property="id" column="id"/>
-		<result property="dataId" column="title"/>
-		<result property="dataName" column="summary"/>
-		<result property="filePath" column="releaseDate"/>
-		<result property="upDate" column="clickHit"/>
-		<result property="stateForecast" column="replyHit"/>
-		<result property="foDate" column="content"/>
+		<result property="dataId" column="dataId"/>
+		<result property="dataName" column="dataName"/>
+		<result property="filePath" column="filePath"/>
+		<result property="createDate" column="createDate"/>
+		<result property="stateAnalyze" column="stateAnalyze"/>
+		<result property="anDate" column="anDate"/>
+		<result property="anResult" column="anResult"/>
+		<result property="stateForecast" column="stateForecast"/>
+		<result property="foDate" column="foDate"/>
+		<result property="foResult" column="foResult"/>
 		<result property="downloadPath" column="keyWord"/>
-
 	</resultMap>
 	
 	<!--<select id="countList"  resultMap="BlogResult">-->

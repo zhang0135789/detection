@@ -69,7 +69,7 @@
             </td>
             <td>
                 <div id="hege" hidden="true"><font color="red">检测中...</font></div>
-                <div id="buhege" hidden="false"><font color="red">检测完成</font></div>
+                <div id="buhege" ><font color="red">检测完成</font></div>
             </td>
    		</tr>
 

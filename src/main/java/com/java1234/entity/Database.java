@@ -18,8 +18,10 @@ public class Database  {
     private Date createDate; // 采集数据时间
     private Integer stateAnalyze; // 分析状态
     private Date anDate; // 分析时间
+    private String anResult; //分析结果
     private Integer stateForecast; // 预测状态
     private Date foDate; //预测时间
+    private String foResult; //预测结果
     private String downloadOPath; //下载路径
 
 
@@ -103,6 +105,22 @@ public class Database  {
         this.downloadOPath = downloadOPath;
     }
 
+    public String getAnResult() {
+        return anResult;
+    }
+
+    public void setAnResult(String anResult) {
+        this.anResult = anResult;
+    }
+
+    public String getFoResult() {
+        return foResult;
+    }
+
+    public void setFoResult(String foResult) {
+        this.foResult = foResult;
+    }
+
     @Override
     public String toString() {
         return "Database{" +
@@ -113,9 +131,12 @@ public class Database  {
                 ", createDate=" + createDate +
                 ", stateAnalyze=" + stateAnalyze +
                 ", anDate=" + anDate +
+                ", anResult='" + anResult + '\'' +
                 ", stateForecast=" + stateForecast +
                 ", foDate=" + foDate +
+                ", foResult='" + foResult + '\'' +
                 ", downloadOPath='" + downloadOPath + '\'' +
                 '}';
     }
+
 }
