@@ -68,14 +68,15 @@
 	}
 	
 	
-	function openBlogModifyTab(){
+	function openModifyTab(){
 		 var selectedRows=$("#dg").datagrid("getSelections");
 		 if(selectedRows.length!=1){
-			 $.messager.alert("系统提示","请选择一个要修改的博客！");
+			 $.messager.alert("系统提示","请选择一个要查看的数据！");
 			 return;
 		 }
 		 var row=selectedRows[0];
-		 window.parent.openTab('修改博客','modifyBlog.jsp?id='+row.id,'icon-writeblog');
+
+		 window.parent.openTab('抽样检测详情','resultData.jsp?id='+row.id+'&dataName='+row.dataName,'icon-writeblog');
 	}
 	
 </script>
@@ -97,7 +98,7 @@
  </table>
  <div id="tb">
  	<div>
- 		<a href="javascript:openBlogModifyTab()" class="easyui-linkbutton" iconCls="icon-search" plain="true">查看</a>
+ 		<a href="javascript:openModifyTab()" class="easyui-linkbutton" iconCls="icon-search" plain="true">查看</a>
  		<%--<a href="javascript:deleteBlog()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>--%>
  	</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
  	<div>

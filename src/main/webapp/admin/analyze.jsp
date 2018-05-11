@@ -81,7 +81,7 @@
             return;
         }else {
             row=selectedRows[0];
-            window.parent.openTab('修改博客','modifyData.jsp?id='+row.id+'&dataName='+row.dataName,'icon-writeblog');
+            window.parent.openTab('抽样检测','modifyData.jsp?id='+row.id+'&dataName='+row.dataName,'icon-writeblog');
         }
 
 	}
