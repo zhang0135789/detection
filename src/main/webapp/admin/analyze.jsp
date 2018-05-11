@@ -76,7 +76,7 @@
 		 }
         var row = selectedRows[0];
 		 console.log(row);
-        if(row.stateAnalyze == "1"){
+        if(row.stateAnalyze == 1){
             $.messager.alert("系统提示","已经检测，请勿重复操作！");
             return;
         }else {

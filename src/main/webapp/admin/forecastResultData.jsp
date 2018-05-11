@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>抽样分析页面</title>
+<title>预测结果页面</title>
 <link rel="stylesheet" type="text/css" href="<%=path%>/static/jquery-easyui-1.3.3/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="<%=path%>/static/jquery-easyui-1.3.3/themes/icon.css">
 <script type="text/javascript" src="<%=path%>/static/jquery-easyui-1.3.3/jquery.min.js"></script>
@@ -52,7 +52,7 @@
 </script>
 </head>
 <body style="margin: 10px">
-<div id="p" class="easyui-panel" title="抽样检测" style="padding: 10px">
+<div id="p" class="easyui-panel" title="预测结果" style="padding: 10px">
  	<table cellspacing="20px">
    		<tr>
    			<td width="100px">抽样检测数据：</td>
@@ -63,18 +63,18 @@
    		</tr>
 
    		<tr>
-   			<td valign="top">检测进度：</td>
+   			<td valign="top">预测进度：</td>
    			<td>
                 <div id="p" class="easyui-progressbar" data-options="value:100" style="width:400px;"></div>
             </td>
             <td>
                 <div id="hege" hidden="true"><font color="red">检测中...</font></div>
-                <div id="buhege" ><font color="red">检测完成</font></div>
+                <div id="buhege" ><font color="red">预测完成</font></div>
             </td>
    		</tr>
 
         <tr>
-            <td>抽样检测柱状图：</td>
+            <td>预测结果折线图：</td>
             <td>
                 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
                 <div id="main" style="width: 600px;height:400px;"></div>
@@ -82,7 +82,7 @@
         </tr>
 
    		<tr>
-   			<td>本次抽检结果：</td>
+   			<td>预测下批产品合格率：</td>
    			<td>
                 <div id="test1" hidden="true"><font color="red">合格</font></div>
                 <div id="test2" hidden="false"><font color="red">不合格</font></div>

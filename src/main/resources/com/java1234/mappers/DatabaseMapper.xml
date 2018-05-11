@@ -8,6 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="id" column="id"/>
 		<result property="dataId" column="dataId"/>
 		<result property="dataName" column="dataName"/>
+		<result property="fileName" column="fileName"/>
 		<result property="filePath" column="filePath"/>
 		<result property="createDate" column="createDate"/>
 		<result property="stateAnalyze" column="stateAnalyze"/>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>抽样分析详情页面</title>
+<title>数据预测页面</title>
 <link rel="stylesheet" type="text/css" href="<%=path%>/static/jquery-easyui-1.3.3/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="<%=path%>/static/jquery-easyui-1.3.3/themes/icon.css">
 <script type="text/javascript" src="<%=path%>/static/jquery-easyui-1.3.3/jquery.min.js"></script>
@@ -50,10 +50,10 @@
 </script>
 </head>
 <body style="margin: 10px">
-<div id="p" class="easyui-panel" title="抽样检测" style="padding: 10px">
+<div id="p" class="easyui-panel" title="预测界面" style="padding: 10px">
  	<table cellspacing="20px">
    		<tr>
-   			<td width="80px">抽样检测数据：</td>
+   			<td width="80px">预测数据：</td>
    			<td>
                 <input type="text" id="id" name="id" value="${param.id}"  hidden="false">
                 <input type="text" id="dataName" name="dataName" style="width: 200px;" value="${param.dataName}" disabled="disabled"/>
@@ -61,7 +61,7 @@
    		</tr>
 
    		<tr>
-   			<td valign="top">检测进度：</td>
+   			<td valign="top">预测进度：</td>
    			<td>
                 <div id="p" class="easyui-progressbar" data-options="value:60" style="width:400px;"></div>
             </td>
@@ -74,7 +74,7 @@
    		<tr>
    			<td></td>
    			<td>
-   				<a href="javascript:submitData()" class="easyui-linkbutton" data-options="iconCls:'icon-submit'">抽样检测</a>
+   				<a href="javascript:submitData()" class="easyui-linkbutton" data-options="iconCls:'icon-submit'">数据预测</a>
    			</td>
    		</tr>
    	</table>

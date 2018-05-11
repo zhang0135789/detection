@@ -14,6 +14,7 @@ public class Database  {
     private Integer id; // 编号
     private String dataId; //数据随机号，主键
     private String dataName; // 数据名字
+    private String fileName; //文件名字
     private String filePath; // 数据文件路径
     private Date createDate; // 采集数据时间
     private Integer stateAnalyze; // 分析状态
@@ -24,6 +25,14 @@ public class Database  {
     private String foResult; //预测结果
     private String downloadOPath; //下载路径
 
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 
     public Integer getId() {
         return id;
@@ -127,6 +136,7 @@ public class Database  {
                 "id=" + id +
                 ", dataId='" + dataId + '\'' +
                 ", dataName='" + dataName + '\'' +
+                ", fileName='" + fileName + '\'' +
                 ", filePath='" + filePath + '\'' +
                 ", createDate=" + createDate +
                 ", stateAnalyze=" + stateAnalyze +
@@ -138,5 +148,5 @@ public class Database  {
                 ", downloadOPath='" + downloadOPath + '\'' +
                 '}';
     }
-
 }
+
