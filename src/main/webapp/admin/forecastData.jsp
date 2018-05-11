@@ -63,7 +63,7 @@
    		<tr>
    			<td valign="top">预测进度：</td>
    			<td>
-                <div id="p" class="easyui-progressbar" data-options="value:60" style="width:400px;"></div>
+                <div id="Progress" class="easyui-progressbar" data-options="value:0" style="width:400px;"></div>
             </td>
             <td>
                 <div id="test1" hidden="true"><font color="red">检测中...</font></div>

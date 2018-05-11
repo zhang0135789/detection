@@ -21,27 +21,47 @@
 
 
 
-	function submitData(){
-		<%--var title=$("#title").val();--%>
-		<%--var blogTypeId=$("#blogTypeId").combobox("getValue");--%>
-		<%--var content=UE.getEditor('editor').getContent();--%>
-		<%--var keyWord=$("#keyWord").val();--%>
+    function submitData(){
+		// var id=$("#id").val();
+        var p = $("#Progress");
+        // console.log(p);
+        var n = 1;
 
-		<%--if(title==null || title==''){--%>
-			<%--alert("请输入标题！");--%>
-		<%--}else if(blogTypeId==null || blogTypeId==''){--%>
-			<%--alert("请选择博客类别！");--%>
-		<%--}else if(content==null || content==''){--%>
-			<%--alert("请输入内容！");--%>
-		<%--}else{--%>
-			<%--$.post("<%=path%>/admin/blog/save.do",{'id':'${param.id}','title':title,'blogType.id':blogTypeId,'content':content,'contentNoTag':UE.getEditor('editor').getContentTxt(),'summary':UE.getEditor('editor').getContentTxt().substr(0,155),'keyWord':keyWord},function(result){--%>
-				<%--if(result.success){--%>
-					<%--alert("博客修改成功！");--%>
-				<%--}else{--%>
-					<%--alert("博客修改失败！");--%>
-				<%--}--%>
-			<%--},"json");--%>
-		<%--}--%>
+        // $('body').everyTime("0.1s",'A',function() {
+        //     if(n < 100)
+        //         p.progressbar("setValue", n++);
+        //     else {
+        //         window.clearInterval;
+        //     }
+        // },0,true);
+        setInterval(function () {
+
+            if(n <100)
+                p.progressbar("setValue", n++);
+            else {
+                window.clearInterval;
+            }
+
+        },30);
+
+        var flag = true;
+        while(flag){
+            if(n == 100) {
+                flag = false;
+                alert(1)
+                $.post("<%=path%>/admin/data/analyze.do",
+                    {'id':'${param.id}'},
+                    function(result){
+                        if(result.success){
+                            p.progressbar("setValue",100);
+                            $.messager.alert("检测成功！");
+                        }else{
+                            $.messager.alert("检测失败！");
+                        }
+                    },
+                    "json");
+            }
+        }
 	}
 
 
@@ -63,7 +83,7 @@
    		<tr>
    			<td valign="top">检测进度：</td>
    			<td>
-                <div id="p" class="easyui-progressbar" data-options="value:60" style="width:400px;"></div>
+                <div id="Progress" class="easyui-progressbar" data-options="value:0" style="width:400px;"></div>
             </td>
             <td>
                 <div id="test1" hidden="true"><font color="red">检测中...</font></div>
@@ -80,32 +100,7 @@
    	</table>
  </div>
 
- <%--<script type="text/javascript">--%>
 
-    <%--//实例化编辑器--%>
-    <%--//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例--%>
-    <%--var ue = UE.getEditor('editor');--%>
-
-    <%--ue.addListener("ready",function(){--%>
-        <%--//通过ajax请求数据--%>
-        <%--UE.ajax.request("<%=path%>/admin/blog/findById.do",--%>
-            <%--{--%>
-                <%--method:"post",--%>
-                <%--async : false,  --%>
-                <%--data:{"id":"${param.id}"},--%>
-                <%--onsuccess:function(result){--%>
-                	<%--result = eval("(" + result.responseText + ")");  --%>
-                	<%--$("#title").val(result.title);--%>
-                	<%--$("#keyWord").val(result.keyWord);--%>
-       				<%--$("#blogTypeId").combobox("setValue",result.blogType.id);--%>
-       				<%--UE.getEditor('editor').setContent(result.content);--%>
-                <%--}--%>
-            <%--}--%>
-        <%--);--%>
-    <%--});--%>
-    <%----%>
-   <%----%>
-<%--</script>--%>
 </body>
 </html>
 
