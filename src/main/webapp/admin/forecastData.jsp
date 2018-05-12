@@ -21,29 +21,32 @@
 
 
 
-	function submitData(){
-		<%--var title=$("#title").val();--%>
-		<%--var blogTypeId=$("#blogTypeId").combobox("getValue");--%>
-		<%--var content=UE.getEditor('editor').getContent();--%>
-		<%--var keyWord=$("#keyWord").val();--%>
+    function submitData(){
+        // var id=$("#id").val();
+        var p = $("#Progress");
+        // console.log(p);
+        var n = 1;
 
-		<%--if(title==null || title==''){--%>
-			<%--alert("请输入标题！");--%>
-		<%--}else if(blogTypeId==null || blogTypeId==''){--%>
-			<%--alert("请选择博客类别！");--%>
-		<%--}else if(content==null || content==''){--%>
-			<%--alert("请输入内容！");--%>
-		<%--}else{--%>
-			<%--$.post("<%=path%>/admin/blog/save.do",{'id':'${param.id}','title':title,'blogType.id':blogTypeId,'content':content,'contentNoTag':UE.getEditor('editor').getContentTxt(),'summary':UE.getEditor('editor').getContentTxt().substr(0,155),'keyWord':keyWord},function(result){--%>
-				<%--if(result.success){--%>
-					<%--alert("博客修改成功！");--%>
-				<%--}else{--%>
-					<%--alert("博客修改失败！");--%>
-				<%--}--%>
-			<%--},"json");--%>
-		<%--}--%>
-	}
 
+        var value = p.progressbar('getValue');
+        if (value < 100){
+            value += Math.floor(Math.random() * 10);
+            p.progressbar('setValue', value);
+            setTimeout(arguments.callee, 1000);
+        }else {
+            $.post("<%=path%>/admin/data/analyze.do",
+                {'id':'${param.id}'},
+                function(result){
+                    if(result.success){
+                        p.progressbar("setValue",100);
+                        $.messager.alert("检测成功！");
+                    }else{
+                        $.messager.alert("检测失败！");
+                    }
+                },
+                "json");
+        }
+    }
 
 
 

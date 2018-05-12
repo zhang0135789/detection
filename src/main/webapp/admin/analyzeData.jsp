@@ -27,43 +27,26 @@
         // console.log(p);
         var n = 1;
 
-        // $('body').everyTime("0.1s",'A',function() {
-        //     if(n < 100)
-        //         p.progressbar("setValue", n++);
-        //     else {
-        //         window.clearInterval;
-        //     }
-        // },0,true);
-        setInterval(function () {
 
-            if(n <100)
-                p.progressbar("setValue", n++);
-            else {
-                window.clearInterval;
-            }
-
-        },30);
-
-        var flag = true;
-        while(flag){
-            if(n == 100) {
-                flag = false;
-                alert(1)
-                $.post("<%=path%>/admin/data/analyze.do",
-                    {'id':'${param.id}'},
-                    function(result){
-                        if(result.success){
-                            p.progressbar("setValue",100);
-                            $.messager.alert("检测成功！");
-                        }else{
-                            $.messager.alert("检测失败！");
-                        }
-                    },
-                    "json");
-            }
+        var value = p.progressbar('getValue');
+        if (value < 100){
+            value += Math.floor(Math.random() * 10);
+            p.progressbar('setValue', value);
+            setTimeout(arguments.callee, 1000);
+        }else {
+            $.post("<%=path%>/admin/data/analyze.do",
+                {'id':'${param.id}'},
+                function(result){
+                    if(result.success){
+                        p.progressbar("setValue",100);
+                        $.messager.alert("检测成功！");
+                    }else{
+                        $.messager.alert("检测失败！");
+                    }
+                },
+                "json");
         }
 	}
-
 
 
 
