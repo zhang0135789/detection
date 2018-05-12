@@ -47,6 +47,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</select>
 
+	<insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Database">
+		insert into t_database (dataId ,dataName,fileName , createDate )
+		values(#{dataId} ,#{dataName} , #{fileName} ,#{createDate})
+	</insert>
+
 <!--
         <select id="findById" parameterType="Integer" resultMap="BlogResult">
             select * from t_blog where id=#{id}
@@ -89,9 +94,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </select>
 
 
-        <insert id="add" useGeneratedKeys="true" keyProperty="id" parameterType="Blog">
-            insert into t_blog values(null,#{title},#{summary},now(),0,0,#{content},#{blogType.id},#{keyWord})
-        </insert>
+
 
         <delete id="delete" parameterType="Integer">
             delete from t_blog where id=#{id}

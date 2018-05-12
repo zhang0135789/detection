@@ -13,6 +13,8 @@ import net.sf.json.JsonConfig;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +31,30 @@ import java.util.*;
 public class DatabaseController {
     @Resource
     private DatabaseService databaseService;
+
+    /**
+     * 获取excel文件
+     * @param dataName
+     * @param file
+     * @return
+     */
+    @RequestMapping("/save")
+    @ResponseBody
+    public String getData(String dataName ,@RequestParam("filepath") MultipartFile file) {
+        String flag = "0";
+        String filename = file.getOriginalFilename();
+        Database data = new Database();
+        data.setDataName(dataName);
+        data.setFileName(filename);
+
+        //保存信息
+        databaseService.save(data);
+
+
+
+
+        return "1";
+    }
 
 
     /**
@@ -68,7 +94,35 @@ public class DatabaseController {
         return null;
     }
 
+    /**
+     * 抽样检测
+     * @param id
+     * @return
+     */
+    @RequestMapping("/analyze")
+    @ResponseBody
+    public String getAnalzeResult(@RequestParam(value="id",required=false)String id ) {
+        System.out.println("===========" + id);
 
 
+
+        String flag = "0";
+
+        return "1";
+    }
+
+    /**
+     * 进预测
+     * @param id
+     * @return
+     */
+    @RequestMapping("/forecast")
+    @ResponseBody
+    public String getForecastResult(@RequestParam(value="id",required=false)String id ) {
+        System.out.println("===========" + id);
+        String flag = "0";
+
+        return "1";
+    }
 
 }

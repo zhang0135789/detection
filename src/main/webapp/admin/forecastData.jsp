@@ -22,26 +22,23 @@
 
 
     function submitData(){
-        // var id=$("#id").val();
         var p = $("#Progress");
-        // console.log(p);
-        var n = 1;
-
-
+        $("#test1").removeAttr("hidden");
         var value = p.progressbar('getValue');
         if (value < 100){
-            value += Math.floor(Math.random() * 10);
+            value ++;
             p.progressbar('setValue', value);
-            setTimeout(arguments.callee, 1000);
+            setTimeout(arguments.callee, 60);
         }else {
-            $.post("<%=path%>/admin/data/analyze.do",
+            $.post("<%=path%>/admin/data/forecast.do",
                 {'id':'${param.id}'},
                 function(result){
-                    if(result.success){
-                        p.progressbar("setValue",100);
-                        $.messager.alert("检测成功！");
+                    if(result == "1"){
+                        $("#test1").attr("hidden", true);
+                        $("#test2").removeAttr("hidden");
+                        $.messager.alert("系统提示","检测成功！");
                     }else{
-                        $.messager.alert("检测失败！");
+                        $.messager.alert("系统提示","检测失败！");
                     }
                 },
                 "json");
@@ -69,8 +66,8 @@
                 <div id="Progress" class="easyui-progressbar" data-options="value:0" style="width:400px;"></div>
             </td>
             <td>
-                <div id="test1" hidden="true"><font color="red">检测中...</font></div>
-                <div id="test2" hidden="true"><font color="red">检测完成</font></div>
+                <div id="test1" hidden="false"><font color="red">预测中...</font></div>
+                <div id="test2" hidden="true"><font color="red">预测完成</font></div>
             </td>
    		</tr>
 

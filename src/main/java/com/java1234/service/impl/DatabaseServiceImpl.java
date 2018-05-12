@@ -3,11 +3,15 @@ package com.java1234.service.impl;
 import com.java1234.dao.DatabaseDao;
 import com.java1234.entity.Database;
 import com.java1234.service.DatabaseService;
+import javafx.scene.input.DataFormat;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * @Author: zz
@@ -38,5 +42,16 @@ public class DatabaseServiceImpl implements DatabaseService {
     @Override
     public Long getTotal(Map<String, Object> map) {
         return databaseDao.getTotal(map);
+    }
+
+    /**
+     * ±£´æÊý¾Ý
+     * @param data
+     */
+    @Override
+    public void save(Database data) {
+        data.setDataId(UUID.randomUUID().toString());
+        data.setCreateDate(new Date());
+        databaseDao.save(data);
     }
 }

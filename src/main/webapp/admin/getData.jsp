@@ -29,31 +29,51 @@
     <script type="text/javascript">
 
         function submitData() {
-            // alert(111);
-            var dataName = $("#dataName").val();
-            var filepath = $("#fb").val();
-            console.log(dataName + "----" + filepath);
-            if(dataName == null || dataName == '') {
-                alert("请输入数据名称！");
-            }else if(filepath == null || filepath == '' ) {
-                alert("请上传需要检测的数据！");
-            }else{
 
-                $.post("<%=path%>/admin/blog/save.do",
-                        {
-                        'dataName': dataName,
-                        'filepath': filepath,
-                        },
-                        function (result) {
-                            if (result.success) {
-                               alert("数据上传成功成功！");
-                                resetValue();
-                            } else {
-                                alert("数据上传失败失败！");
-                            }
-                        },
-                        "json");
+            $('#formflag').form('submit', {
+                    url:"<%=path%>/admin/data/save.do",
+                onSubmit: function(){
+                // do some check
+                // return false to prevent submit;
+            },
+            success:function(result){
+                if (result == "1") {
+                    $.messager.alert("系统提示","数据上传成功成功！");
+                    resetValue();
+                } else {
+                    $.messager.alert("系统提示","数据上传失败失败！");
+                }
             }
+        });
+
+
+            // alert(111);
+            <%--var dataName = $("#dataName").val();--%>
+            <%--var filepath = $("#fb");--%>
+            <%--console.log(filepath);--%>
+            <%--if(dataName == null || dataName == '') {--%>
+                <%--alert("请输入数据名称！");--%>
+            <%--}else if(filepath == null || filepath == '' ) {--%>
+                <%--alert("请上传需要检测的数据！");--%>
+            <%--}else{--%>
+                <%--var formData = new formData();--%>
+                <%--formData.append('filepath',filepath.files[0]);--%>
+
+                <%--$.ajax({url:"<%=path%>/admin/data/save.do?dataName=" + dataName ,--%>
+                        <%--type:"POST",--%>
+                        <%--data:formData,--%>
+                        <%--contentType:false,--%>
+                        <%--processData:false,--%>
+                        <%--success: function (result) {--%>
+                                    <%--if (result == "1") {--%>
+                                       <%--$.messager.alert("系统提示","数据上传成功成功！");--%>
+                                        <%--resetValue();--%>
+                                    <%--} else {--%>
+                                        <%--$.messager.alert("系统提示","数据上传失败失败！");--%>
+                                    <%--}--%>
+                        <%--},--%>
+                       <%--});--%>
+            <%--}--%>
         }
 
         // 重置数据
@@ -71,28 +91,29 @@
 </head>
 <body style="margin: 10px">
 <div id="p" class="easyui-panel" title="" style="padding: 10px">
-    <table cellspacing="20px">
-        <tr>
-            <td width="100px">采集数据名称：</td>
-            <td><input type="text" id="dataName" name="dataName" style="width: 150px;" value=""/></td>
-        </tr>
-        <tr>
-            <td width="80px">上传数据：</td>
-            <td style="color: orangered">(只能上传excel文件)</td>
-            <td>
-                <%--<input   class="easyui-filebox" style="width:300px" />--%>
-                <input id="fb" type="file" style="width:300px">
-            </td>
-        </tr>
+    <form id="formflag"   method="post" enctype="multipart/form-data" >
+        <table cellspacing="20px">
+            <tr>
+                <td width="100px">采集数据名称：</td>
+                <td><input type="text" id="dataName" name="dataName" style="width: 150px;" value=""/></td>
+            </tr>
+            <tr>
+                <td width="80px">上传数据：</td>
+                <td style="color: orangered">(只能上传excel文件)</td>
+                <td>
+                    <%--<input   class="easyui-filebox" style="width:300px" />--%>
+                    <input id="filepath" name="filepath" type="file" style="width:300px" class="addImgH_form" target="up">
+                </td>
+            </tr>
 
-
-        <tr>
-            <td></td>
-            <td>
-            <a href="javascript:submitData()" class="easyui-linkbutton" data-options="iconCls:'icon-submit'">上传数据</a>
-            </td>
-        </tr>
-    </table>
+            <tr>
+                <td></td>
+                <td>
+                <a href="javascript:submitData()" class="easyui-linkbutton" data-options="iconCls:'icon-submit'">上传数据</a>
+                </td>
+            </tr>
+        </table>
+    </form>
 </div>
 </body>
 </html>

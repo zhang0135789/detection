@@ -25,4 +25,10 @@ public interface DatabaseService {
      * @return
      */
     Long getTotal(Map<String,Object> map);
+
+    /**
+     * ±£´æÊı¾İ
+     * @param database
+     */
+    void save(Database database);
 }

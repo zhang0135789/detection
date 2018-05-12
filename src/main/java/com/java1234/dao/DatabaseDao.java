@@ -75,6 +75,13 @@ public interface DatabaseDao {
     public Integer delete(Integer id);
 
     /**
+     * 添加信息
+     * @param database
+     * @return
+     */
+    public Integer save(Database database);
+
+    /**
      * 查询指定的博客类别下的博客数量
      * @param typeId
      * @return
