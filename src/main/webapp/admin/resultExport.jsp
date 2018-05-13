@@ -53,16 +53,38 @@
 		 var row=selectedRows[0];
 
 		 if(row.stateAnalyze=="1") {
-             $.post("<%=path%>/admin/data/exportExcel.do",
-                 {dataId:row.dataId},
-                 function(result){
-                     if(result=="1"){
-                         $.messager.alert("系统提示","数据导出成功");
-                         $("#dg").datagrid("reload");
-                     }else{
-                         $.messager.alert("系统提示","数据导出失败");
-                     }}
-                 ,"json");
+
+             <%--$.ajax({--%>
+                 <%--url: "<%=path%>/admin/data/exportExcel.do",--%>
+                 <%--type: 'post',--%>
+                 <%--data: {'dataId': row.dataId},--%>
+                 <%--success: function (data, status, xhr) {--%>
+                     <%--console.log("Download file DONE!");--%>
+                     <%--console.log(data); // ajax方式请求的数据只能存放在javascipt内存空间，可以通过javascript访问，但是无法保存到硬盘--%>
+                     <%--console.log(status);--%>
+                     <%--console.log(xhr);--%>
+                     <%--console.log("=====================");--%>
+                 <%--}--%>
+             <%--});--%>
+
+
+             console.log("ajaxDownloadSynchronized");
+             var url = "<%=path%>/admin/data/exportExcel.do?dataId="+row.dataId;
+             var fileName = "检测数据结果表.xls";
+             var form = $("<form></form>").attr("action", url).attr("method", "post");
+             form.append($("<input></input>").attr("type", "hidden").attr("name", "fileName").attr("value", fileName));
+             form.appendTo('body').submit().remove();
+
+             <%--$.post("<%=path%>/admin/data/exportExcel.do",--%>
+                 <%--{dataId:row.dataId},--%>
+                 <%--function(result){--%>
+                     <%--if(result=="1"){--%>
+                         <%--$.messager.alert("系统提示","数据导出成功");--%>
+                         <%--$("#dg").datagrid("reload");--%>
+                     <%--}else{--%>
+                         <%--$.messager.alert("系统提示","数据导出失败");--%>
+                     <%--}}--%>
+                 <%--,"json");--%>
 		 }else {
              $.messager.alert("系统提示","请先检测数据，在进行导出操作！");
 		 }

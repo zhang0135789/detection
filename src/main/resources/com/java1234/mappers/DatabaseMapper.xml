@@ -91,12 +91,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             delete from t_database where id=#{id}
 	</delete>
 
+    <select id="findById" parameterType="String" resultType="Database">
+                select * from t_database where dataId=#{dataId}
+    </select>
 
 
 	<!--
-            <select id="findById" parameterType="Integer" resultMap="BlogResult">
-                select * from t_blog where id=#{id}
-            </select>
+
 
 
 

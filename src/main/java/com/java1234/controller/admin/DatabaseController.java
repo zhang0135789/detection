@@ -5,11 +5,16 @@ package com.java1234.controller.admin;
 import com.java1234.entity.Database;
 import com.java1234.entity.PageBean;
 import com.java1234.service.DatabaseService;
+import com.java1234.util.ExcelUtil;
 import com.java1234.util.ResponseUtil;
 import com.java1234.util.StringUtil;
+import com.mysql.fabric.Response;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +22,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -29,8 +36,81 @@ import java.util.*;
 @Controller
 @RequestMapping("/admin/data")
 public class DatabaseController {
+
+    private static final Logger log = LoggerFactory.getLogger(DatabaseController.class);
+
     @Resource
     private DatabaseService databaseService;
+
+    /**
+     * 导出excel数据
+     * @return
+     */
+    @RequestMapping("/exportExcel")
+    @ResponseBody
+    public String exportExcel(String dataId , HttpServletResponse response) throws Exception {
+        System.out.println(dataId);
+        String fileName = "检测数据结果表";
+        String contentType = "application/vnd.ms-excel";//定义导出文件的格式的字符串
+        String recommendedName = new String(fileName.getBytes(),"iso_8859_1");//设置文件名称的编码格式
+        response.setContentType(contentType);//设置导出文件格式
+
+
+
+        HSSFWorkbook wb = databaseService.exportExcel(dataId);
+
+
+//        OutputStream os = null;
+//        try {
+//            os = response.getOutputStream();
+//            wb.write(os);
+//        } catch (IOException e) {
+//            log.error("获取输出流失败",e);
+//        }finally {
+//            if(os != null) {
+//                try {
+//                    os.close();
+//                } catch (IOException e) {
+//                    log.error("关闭输出流失败",e);
+//                }
+//            }
+//        }
+
+
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        wb.write(os);
+        byte[] content = os.toByteArray();
+        InputStream is = new ByteArrayInputStream(content);
+        // 设置response参数，可以打开下载页面
+        response.reset();
+        response.setContentType("application/vnd.ms-excel;charset=utf-8");
+        response.setHeader("Content-Disposition", "attachment;filename="
+                + new String((fileName + ".xls").getBytes(), "iso-8859-1"));
+        ServletOutputStream out = response.getOutputStream();
+        BufferedInputStream bis = null;
+        BufferedOutputStream bos = null;
+
+        try {
+            bis = new BufferedInputStream(is);
+            bos = new BufferedOutputStream(out);
+            byte[] buff = new byte[2048];
+            int bytesRead;
+            // Simple read/write loop.
+            while (-1 != (bytesRead = bis.read(buff, 0, buff.length))) {
+                bos.write(buff, 0, bytesRead);
+            }
+        } catch (Exception e) {
+            log.error("写入失败",e);
+            e.printStackTrace();
+        } finally {
+            if (bis != null)
+                bis.close();
+            if (bos != null)
+                bos.close();
+        }
+
+        return "1";
+    }
 
     /**
      * 获取excel文件

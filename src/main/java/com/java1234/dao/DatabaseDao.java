@@ -34,10 +34,10 @@ public interface DatabaseDao {
 
     /**
      * 通过Id查找实体
-     * @param id
+     * @param dataId
      * @return
      */
-    public Database findById(Integer id);
+    public Database findById(String dataId);
 
     /**
      * 更新信息

@@ -5,6 +5,8 @@ import com.java1234.dao.DatabaseDao;
 import com.java1234.entity.Checkdata;
 import com.java1234.entity.Database;
 import com.java1234.service.DatabaseService;
+import com.java1234.util.ExcelUtil;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -159,7 +161,7 @@ public class DatabaseServiceImpl implements DatabaseService {
         List<Integer> result = new ArrayList<Integer>();
 
         for(Checkdata checkdata: list) {
-            int rsxn = checkdata.getRsxn();
+            int rsxn = checkdata.getRsxn();  //燃烧性能
             int yhwz = checkdata.getYhwz() ;//有害物质
             int sld = checkdata.getSld();//色牢度
             int zwql = checkdata.getZwql();//织物强力
@@ -199,8 +201,6 @@ public class DatabaseServiceImpl implements DatabaseService {
 
         System.out.println("合格率的百分比为:" + resultHgl + "%");
 
-
-
         rst = "[" + rst + "]";
         System.out.println(rst);
         System.out.println(resultHgl);
@@ -214,5 +214,50 @@ public class DatabaseServiceImpl implements DatabaseService {
         databaseDao.update(data);
 
         return "1";
+    }
+
+    /**
+     * 导出excel
+     * @param dataId
+     */
+    @Override
+    public HSSFWorkbook exportExcel(String dataId) {
+        //获取检测数据
+        List<Checkdata> list = new ArrayList<Checkdata>();
+        list = checkdataDao.list(dataId);
+        //获取检测结果
+        Database data = databaseDao.findById(dataId);
+        String result = data.getAnResult();
+        //封装map
+        Map<Integer, List> inputText = new HashMap<>();
+        for(int i = 0; i < list.size(); i++) {
+            List<String> resList = new ArrayList<>();
+
+            Checkdata checkdata = list.get(i);
+            int rsxn = checkdata.getRsxn();  //燃烧新能
+            resList.add(rsxn>3?"合格":"不合格");
+            int yhwz = checkdata.getYhwz() ;//有害物质
+            resList.add(yhwz>3?"合格":"不合格");
+            int sld = checkdata.getSld();//色牢度
+            resList.add(sld>3?"合格":"不合格");
+            int zwql = checkdata.getZwql();//织物强力
+            resList.add(zwql>3?"合格":"不合格");
+            int ccwd = checkdata.getCcwd();//尺寸稳定性
+            resList.add(ccwd>3?"合格":"不合格");
+            int kqqqm = checkdata.getKqqqm();//抗起球起毛性
+            resList.add(kqqqm>3?"合格":"不合格");
+            int mcld = checkdata.getMcld();//摩擦牢度
+            resList.add(mcld>3?"合格":"不合格");
+            int fsx = checkdata.getFsx();//防水性
+            resList.add(fsx>3?"合格":"不合格");
+            int sum = rsxn + yhwz + sld + zwql + ccwd + kqqqm + mcld + fsx;
+            resList.add(sum>24?"合格":"不合格");
+
+            inputText.put(i,resList);
+        }
+
+        HSSFWorkbook wb = ExcelUtil.createExcel(inputText);
+        System.out.println(inputText);
+        return wb;
     }
 }
