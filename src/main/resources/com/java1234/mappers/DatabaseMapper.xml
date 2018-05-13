@@ -23,7 +23,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!--<select id="countList"  resultMap="BlogResult">-->
 		<!--SELECT DATE_FORMAT(releaseDate,'%Y年%m月') AS releaseDateStr ,COUNT(*) AS blogCount  FROM t_blog GROUP BY DATE_FORMAT(releaseDate,'%Y年%m月') ORDER BY DATE_FORMAT(releaseDate,'%Y年%m月') DESC;-->
 	<!--</select>-->
-	
+
+	<update id="update" parameterType="Database">
+		update t_database
+		<set>
+			<if test="stateAnalyze!=null and stateAnalyze!='' ">
+				stateAnalyze=#{stateAnalyze},
+			</if>
+			<if test="anDate!=null and anDate!='' ">
+				anDate=#{anDate},
+			</if>
+			<if test="anResult!=null and anResult!='' ">
+				anResult=#{anResult},
+			</if>
+			<if test="stateForecast!=null and stateForecast!=''">
+				stateForecast=#{stateForecast.id},
+			</if>
+			<if test="foDate!=null and foDate!=''">
+				foDate=#{foDate},
+			</if>
+			<if test="foResult!=null and foResult!=''">
+				foResult=#{foResult},
+			</if>
+			<if test="downloadPath!=null and downloadPath!='' ">
+				downloadPath=#{downloadPath},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+
+
 	<select id="list" parameterType="Map" resultMap="DatabaseResult">
 		select * from t_database
 		<where>
@@ -52,38 +81,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{dataId} ,#{dataName} , #{fileName} ,#{createDate})
 	</insert>
 
+
+
+
 <!--
         <select id="findById" parameterType="Integer" resultMap="BlogResult">
             select * from t_blog where id=#{id}
         </select>
 
-        <update id="update" parameterType="Blog">
-            update t_blog
-            <set>
-                <if test="title!=null and title!='' ">
-                    title=#{title},
-                </if>
-                <if test="summary!=null and summary!='' ">
-                    summary=#{summary},
-                </if>
-                <if test="content!=null and content!='' ">
-                    content=#{content},
-                </if>
-                <if test="blogType.id!=null ">
-                    typeId=#{blogType.id},
-                </if>
-                <if test="clickHit!=null ">
-                    clickHit=#{clickHit},
-                </if>
-                <if test="replyHit!=null ">
-                    replyHit=#{replyHit},
-                </if>
-                <if test="keyWord!=null and keyWord!='' ">
-                    keyWord=#{keyWord},
-                </if>
-            </set>
-            where id=#{id}
-        </update>
+
 
         <select id="getLastBlog" parameterType="Integer" resultMap="BlogResult">
             SELECT * FROM t_blog WHERE id&lt;#{id} ORDER BY id DESC LIMIT 1
