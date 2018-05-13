@@ -59,4 +59,14 @@ public class DatabaseServiceImpl implements DatabaseService {
 
         return 1;
     }
+
+    /**
+     * 根据id删除数据
+     * @param id
+     * @return
+     */
+    @Override
+    public Integer delete(String id) {
+        return databaseDao.delete(new Integer(id));
+    }
 }

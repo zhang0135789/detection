@@ -60,7 +60,9 @@
    			<td>
                 <input type="text" id="id" name="id" value="${param.id}"  hidden="false">
                 <input type="text" id="dataName" name="dataName" style="width: 200px;" value="${param.dataName}" disabled="disabled"/>
-            </td>
+				<input type="text" id="dataId" name="dataId"  value="${param.dataId}" hidden="false"/>
+
+			</td>
    		</tr>
 
    		<tr>

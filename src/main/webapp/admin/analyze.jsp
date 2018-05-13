@@ -54,8 +54,8 @@
 		 var ids=strIds.join(",");
 		 $.messager.confirm("系统提示","您确定要删除这<font color=red>"+selectedRows.length+"</font>条数据吗？",function(r){
 				if(r){
-					$.post("${pageContext.request.contextPath}/admin/data/delete.do",{ids:ids},function(result){
-						if(result.success){
+					$.post("<%=path%>/admin/data/delete.do",{ids:ids},function(result){
+						if(result== '1'){
 							 $.messager.alert("系统提示","数据已成功删除！");
 							 $("#dg").datagrid("reload");
 						}else{
@@ -81,7 +81,7 @@
             return;
         }else {
             row=selectedRows[0];
-            window.parent.openTab('抽样检测','analyzeData.jsp?id='+row.id+'&dataName='+row.dataName,'icon-writeblog');
+            window.parent.openTab('抽样检测','analyzeData.jsp?id='+row.id+'&dataName='+row.dataName + '&dataId' + row.dataId,'icon-writeblog');
         }
 
 	}
@@ -96,6 +96,7 @@
    	<tr>
 		<th field="cb" checkbox="true" align="center"></th>
         <th field="id" width="20" align="center">编号</th>
+		<th field="dataId" width="20" align="center" >匹配符</th>
         <th field="dataName" width="200" align="center" >采集数据名称</th>
         <th field="createDate" width="50" align="center">采集日期</th>
         <th field="stateAnalyze" id="stateAnalyze" width="50" align="center" formatter="formatState1">检测状态</th>

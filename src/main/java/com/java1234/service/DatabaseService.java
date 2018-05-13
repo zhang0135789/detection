@@ -32,4 +32,6 @@ public interface DatabaseService {
      * @param database
      */
     int save(Database database , MultipartFile file);
+
+    Integer delete(String id);
 }

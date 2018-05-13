@@ -101,9 +101,9 @@ public class DatabaseController {
      */
     @RequestMapping("/analyze")
     @ResponseBody
-    public String getAnalzeResult(@RequestParam(value="id",required=false)String id ) {
+    public String getAnalzeResult(@RequestParam(value="id",required=false)String id,String dataId ) {
         System.out.println("===========" + id);
-
+        System.out.println(dataId);
 
 
         String flag = "0";
@@ -121,6 +121,17 @@ public class DatabaseController {
     public String getForecastResult(@RequestParam(value="id",required=false)String id ) {
         System.out.println("===========" + id);
         String flag = "0";
+
+        return "1";
+    }
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public String deteleData(String ids) {
+        String []idsStr = ids.split(",");
+        for(String id : idsStr) {
+            databaseService.delete(id);
+        }
 
         return "1";
     }

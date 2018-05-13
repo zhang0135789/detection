@@ -81,32 +81,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{dataId} ,#{dataName} , #{fileName} ,#{createDate})
 	</insert>
 
+	<delete id="delete" parameterType="Integer">
+            delete from t_database where id=#{id}
+	</delete>
 
 
 
-<!--
-        <select id="findById" parameterType="Integer" resultMap="BlogResult">
-            select * from t_blog where id=#{id}
-        </select>
+	<!--
+            <select id="findById" parameterType="Integer" resultMap="BlogResult">
+                select * from t_blog where id=#{id}
+            </select>
 
 
 
-        <select id="getLastBlog" parameterType="Integer" resultMap="BlogResult">
-            SELECT * FROM t_blog WHERE id&lt;#{id} ORDER BY id DESC LIMIT 1
-        </select>
+            <select id="getLastBlog" parameterType="Integer" resultMap="BlogResult">
+                SELECT * FROM t_blog WHERE id&lt;#{id} ORDER BY id DESC LIMIT 1
+            </select>
 
-        <select id="getNextBlog" parameterType="Integer" resultMap="BlogResult">
-            SELECT * FROM t_blog WHERE id&gt;#{id} ORDER BY id ASC LIMIT 1
-        </select>
-
-
+            <select id="getNextBlog" parameterType="Integer" resultMap="BlogResult">
+                SELECT * FROM t_blog WHERE id&gt;#{id} ORDER BY id ASC LIMIT 1
+            </select>
 
 
-        <delete id="delete" parameterType="Integer">
-            delete from t_blog where id=#{id}
-        </delete>
 
-        <select id="getBlogByTypeId" parameterType="Integer" resultType="Integer">
-            select count(*) from t_blog where typeId=#{typeId}
-        </select>-->
+
+
+            <select id="getBlogByTypeId" parameterType="Integer" resultType="Integer">
+                select count(*) from t_blog where typeId=#{typeId}
+            </select>-->
 </mapper> 
