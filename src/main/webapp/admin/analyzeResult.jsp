@@ -85,7 +85,7 @@
 		 if(row.stateAnalyze != 1){
 		     $.messager.alert("系统提示","无法查看信息，请先检测数据！");
          }else {
-             window.parent.openTab('抽样检测详情', 'analyzeResultData.jsp?id='+row.id+'&dataName='+row.dataName+'&dataId='+row.dataId + '&anResult='+anResult +'&rst='+row.rst, 'icon-writeblog');
+             window.parent.openTab('抽样检测详情', 'analyzeResultData.jsp?id='+row.id+'&dataName='+row.dataName+'&dataId='+row.dataId +'&rst='+row.rst, 'icon-writeblog');
          }
 	}
 	

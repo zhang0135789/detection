@@ -23,28 +23,6 @@
 
 
 
-	function submitData(){
-		<%--var title=$("#title").val();--%>
-		<%--var blogTypeId=$("#blogTypeId").combobox("getValue");--%>
-		<%--var content=UE.getEditor('editor').getContent();--%>
-		<%--var keyWord=$("#keyWord").val();--%>
-
-		<%--if(title==null || title==''){--%>
-			<%--alert("请输入标题！");--%>
-		<%--}else if(blogTypeId==null || blogTypeId==''){--%>
-			<%--alert("请选择博客类别！");--%>
-		<%--}else if(content==null || content==''){--%>
-			<%--alert("请输入内容！");--%>
-		<%--}else{--%>
-			<%--$.post("<%=path%>/admin/blog/save.do",{'id':'${param.id}','title':title,'blogType.id':blogTypeId,'content':content,'contentNoTag':UE.getEditor('editor').getContentTxt(),'summary':UE.getEditor('editor').getContentTxt().substr(0,155),'keyWord':keyWord},function(result){--%>
-				<%--if(result.success){--%>
-					<%--alert("博客修改成功！");--%>
-				<%--}else{--%>
-					<%--alert("博客修改失败！");--%>
-				<%--}--%>
-			<%--},"json");--%>
-		<%--}--%>
-	}
 
 
 
@@ -66,7 +44,7 @@
    		<tr>
    			<td valign="top">预测进度：</td>
    			<td>
-                <div id="p" class="easyui-progressbar" data-options="value:100" style="width:400px;"></div>
+                <div  class="easyui-progressbar" data-options="value:100" style="width:400px;"></div>
             </td>
             <td>
                 <div id="hege" hidden="true"><font color="red">检测中...</font></div>
@@ -83,11 +61,11 @@
         </tr>
 
    		<tr>
-   			<td>预测下批产品合格率：</td>
-   			<td>
-                <div id="test1" hidden="true"><font color="red">合格</font></div>
-                <div id="test2" hidden="false"><font color="red">不合格</font></div>
-   			</td>
+   			<%--<td>预测下批产品合格率：</td>--%>
+   			<%--<td>--%>
+                <%--<div id="test1" hidden="true"><font color="red">合格</font></div>--%>
+                <%--<div id="test2" hidden="false"><font color="red">不合格</font></div>--%>
+   			<%--</td>--%>
    		</tr>
    	</table>
  </div>
@@ -100,18 +78,19 @@
     // 指定图表的配置项和数据
     option = {
         title : {
-            text: '某地区蒸发量和降水量',
-            subtext: '纯属虚构'
+            text: '纺织企业产品合格率预测',
+            subtext: '预测内容'
         },
         tooltip : {
             trigger: 'axis'
         },
         legend: {
-            data:['蒸发量','降水量']
+            data:['最高合格','最低合格']
         },
         toolbox: {
             show : true,
             feature : {
+                mark : {show: true},
                 dataView : {show: true, readOnly: false},
                 magicType : {show: true, type: ['line', 'bar']},
                 restore : {show: true},
@@ -122,80 +101,31 @@
         xAxis : [
             {
                 type : 'category',
-                data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+                boundaryGap : false,
+                data : ['产品1','产品2','产品3','产品4','产品5','产品6','产品7','产品8']
             }
         ],
         yAxis : [
             {
-                type : 'value'
+                type : 'value',
+                axisLabel : {
+                    formatter: '{value}'
+                }
             }
         ],
-        series : [
-            {
-                name:'蒸发量',
-                type:'bar',
-                data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
-                markPoint : {
-                    data : [
-                        {type : 'max', name: '最大值'},
-                        {type : 'min', name: '最小值'}
-                    ]
-                },
-                markLine : {
-                    data : [
-                        {type : 'average', name: '平均值'}
-                    ]
-                }
-            },
-            {
-                name:'降水量',
-                type:'bar',
-                data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
-                markPoint : {
-                    data : [
-                        {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183},
-                        {name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
-                    ]
-                },
-                markLine : {
-                    data : [
-                        {type : 'average', name : '平均值'}
-                    ]
-                }
-            }
-        ]
+        series : [{
+                name:'数据',
+                type:'line',
+                data:[${param.rst2}]
+                }]
     };
+
 
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
 </script>
 
- <%--<script type="text/javascript">--%>
 
-    <%--//实例化编辑器--%>
-    <%--//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例--%>
-    <%--var ue = UE.getEditor('editor');--%>
-
-    <%--ue.addListener("ready",function(){--%>
-        <%--//通过ajax请求数据--%>
-        <%--UE.ajax.request("<%=path%>/admin/blog/findById.do",--%>
-            <%--{--%>
-                <%--method:"post",--%>
-                <%--async : false,  --%>
-                <%--data:{"id":"${param.id}"},--%>
-                <%--onsuccess:function(result){--%>
-                	<%--result = eval("(" + result.responseText + ")");  --%>
-                	<%--$("#title").val(result.title);--%>
-                	<%--$("#keyWord").val(result.keyWord);--%>
-       				<%--$("#blogTypeId").combobox("setValue",result.blogType.id);--%>
-       				<%--UE.getEditor('editor').setContent(result.content);--%>
-                <%--}--%>
-            <%--}--%>
-        <%--);--%>
-    <%--});--%>
-    <%----%>
-   <%----%>
-<%--</script>--%>
 </body>
 </html>
 

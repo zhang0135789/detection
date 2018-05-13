@@ -195,7 +195,7 @@ public class DatabaseServiceImpl implements DatabaseService {
         NumberFormat numberFormat = NumberFormat.getInstance();
         // 设置精确到小数点后2位
         numberFormat.setMaximumFractionDigits(2);
-        String resultHgl = numberFormat.format((float)total/(float)result.size()*100);
+        String resultHgl = numberFormat.format((float)total/(float)(result.size()==0?1:result.size())*100);
 
         System.out.println("合格率的百分比为:" + resultHgl + "%");
 
@@ -212,13 +212,6 @@ public class DatabaseServiceImpl implements DatabaseService {
         data.setRst2(rst);
         data.setFoResult("合格百分率为"+resultHgl+"%"  );
         databaseDao.update(data);
-
-//        if(total >= 6){ //预测下批合格
-//
-//        }else { //不合格
-//
-//        }
-
 
         return "1";
     }

@@ -132,7 +132,7 @@
         },
         yAxis: {},
         series: [{
-            name: '销量',
+            name: '属性值',
             type: 'bar',
             data: [${param.rst}]
         }]

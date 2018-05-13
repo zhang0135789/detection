@@ -32,9 +32,9 @@
     }
 
     function formatTitle(val,row){
-		return "<a target='_blank' href='${pageContext.request.contextPath}/blog/articles/"+row.id+".html'>"+val+"</a>"
+		return "<a target='_blank' href='<%=path%>/blog/articles/"+row.id+".html'>"+val+"</a>"
 	}
-	
+
 	function searchBlog(){
 		$("#dg").datagrid('load',{
 			"title":$("#s_title").val() 
@@ -53,7 +53,7 @@
 		 if(row.stateForecast != 1) {
              $.messager.alert("系统提示","请先预测该数据！");
 		 }else {
-             window.parent.openTab('修改博客', 'forecastResultData.jsp?id='+row.id+'&dataName=' + row.dataName+'&dataId='+row.dataId +"&rst2="+row.rst2, 'icon-writeblog');
+             window.parent.openTab('抽样检测详情', 'forecastResultData.jsp?id='+row.id+'&dataName='+row.dataName+'&dataId='+row.dataId +'&rst2='+row.rst2, 'icon-writeblog');
          }
 	}
 	
