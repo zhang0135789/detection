@@ -70,11 +70,21 @@
 	function openBlogModifyTab(){
 		 var selectedRows=$("#dg").datagrid("getSelections");
 		 if(selectedRows.length!=1){
-			 $.messager.alert("系统提示","请选择一个要修改的博客！");
+			 $.messager.alert("系统提示","请选择一个条数据！");
 			 return;
 		 }
 		 var row=selectedRows[0];
-		 window.parent.openTab('修改博客','modifyBlog.jsp?id='+row.id,'icon-writeblog');
+
+        $.post("${pageContext.request.contextPath}/admin/blog/delete.do",
+				{id:row.dataId},
+				function(result){
+					if(result.success){
+						$.messager.alert("系统提示","数据导出成功");
+						$("#dg").datagrid("reload");
+					}else{
+						$.messager.alert("系统提示","数据导出失败");
+            	}}
+            	,"json");
 	}
 	
 </script>
@@ -87,6 +97,7 @@
    	<tr>
 		<th field="cb" checkbox="true" align="center"></th>
 		<th field="id" width="20" align="center">编号</th>
+		<th field="dataId" width="20" align="center" >通配标识</th>
 		<th field="dataName" width="200" align="center" >采集数据名称</th>
 		<th field="createDate" width="50" align="center">采集日期</th>
 		<th field="stateAnalyze" width="50" align="center" formatter="formatState1">检测状态</th>
