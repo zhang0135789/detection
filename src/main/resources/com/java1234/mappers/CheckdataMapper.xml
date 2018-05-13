@@ -7,41 +7,52 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="Checkdata" id="CheckdataResult">
 		<result property="id" column="id"/>
 		<result property="dataId" column="title"/>
-		<result property="dataName" column="summary"/>
-		<result property="filePath" column="releaseDate"/>
-		<result property="upDate" column="clickHit"/>
-		<result property="stateForecast" column="replyHit"/>
-		<result property="foDate" column="content"/>
-		<result property="downloadPath" column="keyWord"/>
-
+		<result property="scgy" column="scgy"/>
+		<result property="yljg" column="yljg"/>
+		<result property="cpzl" column="cpzl"/>
+		<result property="rsxn" column="rsxn"/>
+		<result property="yhwz" column="yhwz"/>
+		<result property="sld" column="sld"/>
+		<result property="zwql" column="zwql"/>
+		<result property="ccwd" column="ccwd"/>
+		<result property="kqqqm" column="kqqqm"/>
+		<result property="mcld" column="mcld"/>
+		<result property="fsx" column="fsx"/>
 	</resultMap>
-	
+
+	<insert id="add" useGeneratedKeys="true" keyProperty="id" parameterType="Checkdata">
+		insert into t_checkData
+		values(null ,#{dataId} ,#{scgy},#{yljg},#{cpzl},#{rsxn},#{yhwz},#{sld},#{zwql},#{ccwd},#{kqqqm},#{mcld},#{fsx})
+	</insert>
+
+
+
 	<!--<select id="countList"  resultMap="BlogResult">-->
 		<!--SELECT DATE_FORMAT(releaseDate,'%Y年%m月') AS releaseDateStr ,COUNT(*) AS blogCount  FROM t_blog GROUP BY DATE_FORMAT(releaseDate,'%Y年%m月') ORDER BY DATE_FORMAT(releaseDate,'%Y年%m月') DESC;-->
 	<!--</select>-->
 	
-	<select id="list" parameterType="Map" resultMap="CheckdataResult">
-		select * from t_checkdata
-		<where>
-		    <if test="dataName!=null and title!='' ">
-				id like #{id}
-			</if>
-		</where>
-		order by createDate desc
-		<if test="start!=null and size!=null">
-			limit #{start},#{size}
-		</if>
-	</select>
+	<!--<select id="list" parameterType="Map" resultType="Checkdata">-->
+		<!--select * from t_checkdata-->
+		<!--<where>-->
+		    <!--<if test="dataName!=null and title!='' ">-->
+				<!--id like #{id}-->
+			<!--</if>-->
+		<!--</where>-->
+		<!--order by createDate desc-->
+		<!--<if test="start!=null and size!=null">-->
+			<!--limit #{start},#{size}-->
+		<!--</if>-->
+	<!--</select>-->
 	
 
-	<select id="getTotal" parameterType="Map" resultType="Long">
-		select count(1) from t_checkdata
-		<where>
-		    <if test="title!=null and title!='' ">
-				dataName like #{dataName}
-			</if>
-		</where>
-	</select>
+	<!--<select id="getTotal" parameterType="Map" resultType="Long">-->
+		<!--select count(1) from t_checkdata-->
+		<!--<where>-->
+		    <!--<if test="title!=null and title!='' ">-->
+				<!--dataName like #{dataName}-->
+			<!--</if>-->
+		<!--</where>-->
+	<!--</select>-->
 
 <!--
         <select id="findById" parameterType="Integer" resultMap="BlogResult">
@@ -85,9 +96,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </select>
 
 
-        <insert id="add" useGeneratedKeys="true" keyProperty="id" parameterType="Blog">
-            insert into t_blog values(null,#{title},#{summary},now(),0,0,#{content},#{blogType.id},#{keyWord})
-        </insert>
+
 
         <delete id="delete" parameterType="Integer">
             delete from t_blog where id=#{id}
