@@ -41,14 +41,14 @@ public class DatabaseController {
     @RequestMapping("/save")
     @ResponseBody
     public String getData(String dataName ,@RequestParam("filepath") MultipartFile file) {
-        String flag = "0";
+        int flag = 0;
         String filename = file.getOriginalFilename();
         Database data = new Database();
         data.setDataName(dataName);
         data.setFileName(filename);
 
-        //保存信息
-        databaseService.save(data);
+        //读取文件信息并保存信息
+        flag = databaseService.save(data , file);
 
 
 

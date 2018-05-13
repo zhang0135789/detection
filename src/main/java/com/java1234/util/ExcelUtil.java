@@ -7,6 +7,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -73,9 +74,12 @@ public class ExcelUtil {
         }
     }
 
-    public static void exportExcel() {
+    public Map<String,String> readExcel(MultipartFile file) {
+        Map map = new HashMap<String,String>();
 
 
+
+        return map;
     }
 
 

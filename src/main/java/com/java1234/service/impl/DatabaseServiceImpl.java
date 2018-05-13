@@ -3,11 +3,11 @@ package com.java1234.service.impl;
 import com.java1234.dao.DatabaseDao;
 import com.java1234.entity.Database;
 import com.java1234.service.DatabaseService;
-import javafx.scene.input.DataFormat;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -49,9 +49,14 @@ public class DatabaseServiceImpl implements DatabaseService {
      * @param data
      */
     @Override
-    public void save(Database data) {
-        data.setDataId(UUID.randomUUID().toString());
+    @Transactional
+    public int save(Database data , MultipartFile file) {
+        String uuid = UUID.randomUUID().toString();
+        data.setDataId(uuid);
         data.setCreateDate(new Date());
         databaseDao.save(data);
+
+
+        return 1;
     }
 }
