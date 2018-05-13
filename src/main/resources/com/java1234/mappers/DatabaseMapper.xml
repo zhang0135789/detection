@@ -51,6 +51,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="rst!=null and rst!='' ">
                 rst=#{rst},
             </if>
+            <if test="rst2!=null and rst2!='' ">
+                rst2=#{rst2},
+            </if>
         </set>
 		where dataId=#{dataId}
 	</update>

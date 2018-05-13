@@ -46,4 +46,11 @@ public interface DatabaseService {
      * @return
      */
     String analze(String dataId);
+
+    /**
+     * ½øÐÐÔ¤²â
+     * @param dataId
+     * @return
+     */
+    String forecast(String dataId);
 }

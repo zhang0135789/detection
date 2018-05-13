@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <select id="list" parameterType="String" resultType="Checkdata">
         select * from t_checkData
-        where dataid = #{dataId} LIMIT 0,10
+        where dataid = #{dataId} LIMIT 0,8
     </select>
 
 

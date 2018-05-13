@@ -40,31 +40,7 @@
 			"title":$("#s_title").val() 
 		});
 	}
-	
-	function deleteBlog(){
-		var selectedRows=$("#dg").datagrid("getSelections");
-		if(selectedRows.length==0){
-			 $.messager.alert("系统提示","请选择要删除的数据！");
-			 return;
-		 }
-		 var strIds=[];
-		 for(var i=0;i<selectedRows.length;i++){
-			 strIds.push(selectedRows[i].id);
-		 }
-		 var ids=strIds.join(",");
-		 $.messager.confirm("系统提示","您确定要删除这<font color=red>"+selectedRows.length+"</font>条数据吗？",function(r){
-				if(r){
-					$.post("${pageContext.request.contextPath}/admin/blog/delete.do",{ids:ids},function(result){
-						if(result.success){
-							 $.messager.alert("系统提示","数据已成功删除！");
-							 $("#dg").datagrid("reload");
-						}else{
-							$.messager.alert("系统提示","数据删除失败！");
-						}
-					},"json");
-				} 
-	   });
-	}
+
 	
 	
 	function openDataModifyTab(){
@@ -77,7 +53,7 @@
 		 if(row.stateForecast != 1) {
              $.messager.alert("系统提示","请先预测该数据！");
 		 }else {
-             window.parent.openTab('修改博客', 'forecastResultData.jsp?id='+row.id+'&dataName=' + row.dataName+'&dataId='+row.dataId, 'icon-writeblog');
+             window.parent.openTab('修改博客', 'forecastResultData.jsp?id='+row.id+'&dataName=' + row.dataName+'&dataId='+row.dataId +"&rst2="+row.rst2, 'icon-writeblog');
          }
 	}
 	
@@ -96,6 +72,8 @@
 		<th field="createDate" width="50" align="center">采集日期</th>
 		<th field="stateAnalyze" width="50" align="center" formatter="formatState1">检测状态</th>
 		<th field="stateForecast" width="50" align="center" formatter="formatState2">预测状态</th>
+		<th field="foResult" width="50" align="center" >预测结果</th>
+		<th field="rst2" width="50" align="center" >预测结果集</th>
    	</tr>
    </thead>
  </table>

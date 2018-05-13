@@ -108,10 +108,6 @@ public class DatabaseController {
         //检测
         flag = databaseService.analze(dataId);
 
-
-
-
-
         return flag;
     }
 
@@ -124,10 +120,11 @@ public class DatabaseController {
     @ResponseBody
     public String getForecastResult(@RequestParam(value="id",required=false)String id ,String dataId ) {
         System.out.println("===========" + id);
-        String flag = "0";
         System.out.println(dataId);
-
-        return "1";
+        String flag = "0";
+        //预测下批数据
+        flag = databaseService.forecast(dataId);
+        return flag;
     }
 
     /**
