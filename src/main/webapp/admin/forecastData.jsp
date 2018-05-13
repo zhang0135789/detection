@@ -31,7 +31,9 @@
             setTimeout(arguments.callee, 60);
         }else {
             $.post("<%=path%>/admin/data/forecast.do",
-                {'id':'${param.id}'},
+                {'id':'${param.id}',
+                 'dataId':'${param.dataId}'
+                },
                 function(result){
                     if(result == "1"){
                         $("#test1").attr("hidden", true);
@@ -56,6 +58,7 @@
    			<td width="80px">预测数据：</td>
    			<td>
                 <input type="text" id="id" name="id" value="${param.id}"  hidden="false">
+                <input type="text" id="dataId" name="dataId"  value="${param.dataId}" hidden="false"/>
                 <input type="text" id="dataName" name="dataName" style="width: 200px;" value="${param.dataName}" disabled="disabled"/>
             </td>
    		</tr>

@@ -24,7 +24,7 @@
     function submitData(){
         var p = $("#Progress");
         $("#test1").removeAttr("hidden");
-        // console.log(p);
+        console.log(${param.id});
         var value = p.progressbar('getValue');
         if (value < 100){
             value ++;
@@ -32,7 +32,8 @@
             setTimeout(arguments.callee, 60);
         }else {
             $.post("<%=path%>/admin/data/analyze.do",
-                {'id':'${param.id}'},
+                {'id':'${param.id}','dataId':'${param.dataId}'
+                },
                 function(result){
                     if(result == "1"){
                         $("#test1").attr("hidden" ,true);

@@ -80,7 +80,7 @@
 		 }else if(row.stateForecast == 1){
              $.messager.alert("系统提示","此数据已经预测，请选择其他数据！");
 		 }else{
-             window.parent.openTab('预测界面', 'forecastData.jsp?id=' + row.id + '&dataName=' + row.dataName, 'icon-writeblog');
+             window.parent.openTab('预测界面', 'forecastData.jsp?id=' + row.id + '&dataName=' + row.dataName+'&dataId='+row.dataId, 'icon-writeblog');
          }
 	 }
 	
@@ -94,6 +94,7 @@
    	<tr>
 		<th field="cb" checkbox="true" align="center"></th>
 		<th field="id" width="20" align="center">编号</th>
+		<th field="dataId" width="20" align="center" >通配标识</th>
 		<th field="dataName" width="200" align="center" >采集数据名称</th>
 		<th field="createDate" width="50" align="center">采集日期</th>
 		<th field="stateAnalyze" width="50" align="center" formatter="formatState1">检测状态</th>
