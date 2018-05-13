@@ -33,5 +33,17 @@ public interface DatabaseService {
      */
     int save(Database database , MultipartFile file);
 
+    /**
+     * 删除数据
+     * @param id
+     * @return
+     */
     Integer delete(String id);
+
+    /**
+     * 进行检测
+     * @param dataId
+     * @return
+     */
+    String analze(String dataId);
 }

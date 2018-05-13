@@ -18,8 +18,9 @@
 	<!-- 配置数据源 -->
 	<bean id="dataSource"
 		class="com.alibaba.druid.pool.DruidDataSource">
+		<!--<property name="url" value="jdbc:mysql://192.168.1.105:3306/db_detection?useUnicode=true&amp;characterEncoding=UTF-8"/>-->
 
-		<property name="url" value="jdbc:mysql://localhost:3306/db_detection?useUnicode=true&amp;characterEncoding=UTF-8"/>
+		<property name="url" value="jdbc:mysql://47.104.209.118:3306/db_detection?useUnicode=true&amp;characterEncoding=UTF-8"/>
 
 		<property name="username" value="root"/>
 		<property name="password" value="root"/>
@@ -84,8 +85,10 @@
 	<!-- 配置事务通知属性 -->  
     <tx:advice id="txAdvice" transaction-manager="transactionManager">  
         <!-- 定义事务传播属性 -->  
-        <tx:attributes>  
-            <tx:method name="insert*" propagation="REQUIRED" />  
+        <tx:attributes>
+			<tx:method name="analze*" propagation="REQUIRED" />
+			<tx:method name="forecast*" propagation="REQUIRED" />
+			<tx:method name="insert*" propagation="REQUIRED" />
             <tx:method name="update*" propagation="REQUIRED" />  
             <tx:method name="edit*" propagation="REQUIRED" />  
             <tx:method name="save*" propagation="REQUIRED" />  

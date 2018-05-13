@@ -79,6 +79,14 @@ public interface CheckdataDao {
     public Integer delete(Integer id);
 
     /**
+     * 根据dataId获取
+     * @param dataId
+     * @return
+     */
+    List<Checkdata> list(String dataId);
+
+
+    /**
      * 查询指定的博客类别下的博客数量
      * @param typeId
      * @return

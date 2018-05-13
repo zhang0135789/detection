@@ -70,15 +70,22 @@
 	
 	function openDataModifyTab(){
 		 var selectedRows=$("#dg").datagrid("getSelections");
+
+
 		 if(selectedRows.length!=1){
 			 $.messager.alert("系统提示","请选择一条数据！");
 			 return;
 		 }
 		 var row=selectedRows[0];
+         var anResult = 0;
+         if(row.anResult == "合格"){
+             anResult = 1;
+         }
+
 		 if(row.stateAnalyze != 1){
 		     $.messager.alert("系统提示","无法查看信息，请先检测数据！");
          }else {
-             window.parent.openTab('抽样检测详情', 'analyzeResultData.jsp?id='+row.id+'&dataName='+row.dataName+'&dataId='+row.dataId, 'icon-writeblog');
+             window.parent.openTab('抽样检测详情', 'analyzeResultData.jsp?id='+row.id+'&dataName='+row.dataName+'&dataId='+row.dataId + '&anResult='+anResult, 'icon-writeblog');
          }
 	}
 	
@@ -96,6 +103,7 @@
         <th field="dataName" width="200" align="center" >采集数据名称</th>
         <th field="createDate" width="50" align="center">采集日期</th>
         <th field="stateAnalyze" width="50" align="center" formatter="formatState1">检测状态</th>
+        <th field="anResult" width="50" align="center" >检测结果</th>
         <th field="stateForecast" width="50" align="center" formatter="formatState2">预测状态</th>
    	</tr>
    </thead>

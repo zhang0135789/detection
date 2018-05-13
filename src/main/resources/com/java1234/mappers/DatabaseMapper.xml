@@ -37,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				anResult=#{anResult},
 			</if>
 			<if test="stateForecast!=null and stateForecast!=''">
-				stateForecast=#{stateForecast.id},
+				stateForecast=#{stateForecast},
 			</if>
 			<if test="foDate!=null and foDate!=''">
 				foDate=#{foDate},
@@ -48,8 +48,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="downloadPath!=null and downloadPath!='' ">
 				downloadPath=#{downloadPath},
 			</if>
-		</set>
-		where id=#{id}
+        </set>
+		where dataId=#{dataId}
 	</update>
 
 

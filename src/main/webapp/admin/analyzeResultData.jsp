@@ -85,8 +85,10 @@
    		<tr>
    			<td>本次抽检结果：</td>
    			<td>
-                <div id="test1" hidden="true"><font color="red">合格</font></div>
-                <div id="test2" hidden="false"><font color="red">不合格</font></div>
+                <div ><font color="red">
+                    <c:if test="${param.anResult == 1 }">合格</c:if>
+                    <c:if test="${param.anResult == 0 }">不合格</c:if>
+                </font></div>
    			</td>
    		</tr>
    	</table>

@@ -101,14 +101,18 @@ public class DatabaseController {
      */
     @RequestMapping("/analyze")
     @ResponseBody
-    public String getAnalzeResult(@RequestParam(value="id",required=false)String id,String dataId ) {
+    public String getAnalzeResult(@RequestParam(value="id",required=false)String id, String dataId ) {
         System.out.println("===========" + id);
         System.out.println(dataId);
-
-
         String flag = "0";
+        //¼ì²â
+        flag = databaseService.analze(dataId);
 
-        return "1";
+
+
+
+
+        return flag;
     }
 
     /**

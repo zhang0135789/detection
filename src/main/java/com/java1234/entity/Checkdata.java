@@ -12,14 +12,15 @@ public class Checkdata {
     private String scgy;//生产工艺
     private String yljg;//原料结构
     private String cpzl;//产品种类
-    private String rsxn;//燃烧性能
-    private String yhwz;//有害物质
-    private String sld;//色牢度
-    private String zwql;//织物强力
-    private String ccwd;//尺寸稳定性
-    private String kqqqm;//抗起球起毛性
-    private String mcld;//摩擦牢度
-    private String fsx;//防水性
+    private int rsxn;//燃烧性能
+    private int yhwz;//有害物质
+    private int sld;//色牢度
+    private int zwql;//织物强力
+    private int ccwd;//尺寸稳定性
+    private int kqqqm;//抗起球起毛性
+    private int mcld;//摩擦牢度
+    private int fsx;//防水性
+
 
     @Override
     public String toString() {
@@ -29,14 +30,14 @@ public class Checkdata {
                 ", scgy='" + scgy + '\'' +
                 ", yljg='" + yljg + '\'' +
                 ", cpzl='" + cpzl + '\'' +
-                ", rsxn='" + rsxn + '\'' +
-                ", yhwz='" + yhwz + '\'' +
-                ", sld='" + sld + '\'' +
-                ", zwql='" + zwql + '\'' +
-                ", ccwd='" + ccwd + '\'' +
-                ", kqqqm='" + kqqqm + '\'' +
-                ", mcld='" + mcld + '\'' +
-                ", fsx='" + fsx + '\'' +
+                ", rsxn=" + rsxn +
+                ", yhwz=" + yhwz +
+                ", sld=" + sld +
+                ", zwql=" + zwql +
+                ", ccwd=" + ccwd +
+                ", kqqqm=" + kqqqm +
+                ", mcld=" + mcld +
+                ", fsx=" + fsx +
                 '}';
     }
 
@@ -80,67 +81,67 @@ public class Checkdata {
         this.cpzl = cpzl;
     }
 
-    public String getRsxn() {
+    public int getRsxn() {
         return rsxn;
     }
 
-    public void setRsxn(String rsxn) {
+    public void setRsxn(int rsxn) {
         this.rsxn = rsxn;
     }
 
-    public String getYhwz() {
+    public int getYhwz() {
         return yhwz;
     }
 
-    public void setYhwz(String yhwz) {
+    public void setYhwz(int yhwz) {
         this.yhwz = yhwz;
     }
 
-    public String getSld() {
+    public int getSld() {
         return sld;
     }
 
-    public void setSld(String sld) {
+    public void setSld(int sld) {
         this.sld = sld;
     }
 
-    public String getZwql() {
+    public int getZwql() {
         return zwql;
     }
 
-    public void setZwql(String zwql) {
+    public void setZwql(int zwql) {
         this.zwql = zwql;
     }
 
-    public String getCcwd() {
+    public int getCcwd() {
         return ccwd;
     }
 
-    public void setCcwd(String ccwd) {
+    public void setCcwd(int ccwd) {
         this.ccwd = ccwd;
     }
 
-    public String getKqqqm() {
+    public int getKqqqm() {
         return kqqqm;
     }
 
-    public void setKqqqm(String kqqqm) {
+    public void setKqqqm(int kqqqm) {
         this.kqqqm = kqqqm;
     }
 
-    public String getMcld() {
+    public int getMcld() {
         return mcld;
     }
 
-    public void setMcld(String mcld) {
+    public void setMcld(int mcld) {
         this.mcld = mcld;
     }
 
-    public String getFsx() {
+    public int getFsx() {
         return fsx;
     }
 
-    public void setFsx(String fsx) {
+    public void setFsx(int fsx) {
         this.fsx = fsx;
     }
 }
