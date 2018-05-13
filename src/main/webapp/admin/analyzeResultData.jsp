@@ -66,7 +66,7 @@
    		<tr>
    			<td valign="top">检测进度：</td>
    			<td>
-                <div id="p" class="easyui-progressbar" data-options="value:100" style="width:400px;"></div>
+                <div  class="easyui-progressbar" data-options="value:100" style="width:400px;"></div>
             </td>
             <td>
                 <div id="hege" hidden="true"><font color="red">检测中...</font></div>
@@ -100,73 +100,113 @@
     var myChart = echarts.init(document.getElementById('main'));
 
     // 指定图表的配置项和数据
-    option = {
-        title : {
-            text: '某地区蒸发量和降水量',
-            subtext: '纯属虚构'
+    var option = {
+        title: {
+            text: '抽样柱状图', //标题文本内容
         },
-        tooltip : {
-            trigger: 'axis'
-        },
-        legend: {
-            data:['蒸发量','降水量']
-        },
-        toolbox: {
-            show : true,
-            feature : {
-                dataView : {show: true, readOnly: false},
-                magicType : {show: true, type: ['line', 'bar']},
-                restore : {show: true},
-                saveAsImage : {show: true}
-            }
-        },
-        calculable : true,
-        xAxis : [
-            {
-                type : 'category',
-                data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
-            }
-        ],
-        yAxis : [
-            {
-                type : 'value'
-            }
-        ],
-        series : [
-            {
-                name:'蒸发量',
-                type:'bar',
-                data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
-                markPoint : {
-                    data : [
-                        {type : 'max', name: '最大值'},
-                        {type : 'min', name: '最小值'}
-                    ]
+        toolbox: { //可视化的工具箱
+            show: true,
+            feature: {
+                dataView: { //数据视图
+                    show: true
                 },
-                markLine : {
-                    data : [
-                        {type : 'average', name: '平均值'}
-                    ]
-                }
-            },
-            {
-                name:'降水量',
-                type:'bar',
-                data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
-                markPoint : {
-                    data : [
-                        {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183},
-                        {name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
-                    ]
+                restore: { //重置
+                    show: true
                 },
-                markLine : {
-                    data : [
-                        {type : 'average', name : '平均值'}
-                    ]
+                dataZoom: { //数据缩放视图
+                    show: true
+                },
+                saveAsImage: {//保存图片
+                    show: true
+                },
+                magicType: {//动态类型切换
+                    type: ['bar', 'line']
                 }
             }
-        ]
+        },
+        tooltip: { //弹窗组件
+            show: true
+        },
+        xAxis: {
+            data: ["rsxn", "yhwz", "sld", "zwql", "ccwd", "kqqqm","mcld" ,"fsx"]
+        },
+        yAxis: {},
+        series: [{
+            name: '销量',
+            type: 'bar',
+            data: [${param.rst}]
+        }]
+
     };
+
+
+    // option = {
+    //     title : {
+    //         text: '产品属性',
+    //         subtext: '纯属虚构'
+    //     },
+    //     tooltip : {
+    //         trigger: 'axis'
+    //     },
+    //     legend: {
+    //         data:['属性值']
+    //     },
+    //     toolbox: {
+    //         show : true,
+    //         feature : {
+    //             dataView : {show: true, readOnly: false},
+    //             magicType : {show: true, type: ['line', 'bar']},
+    //             restore : {show: true},
+    //             saveAsImage : {show: true}
+    //         }
+    //     },
+    //     calculable : true,
+    //     xAxis : [
+    //         {
+    //             type : 'category',
+    //             data : ['燃烧性能','有害物质','色牢度','织物强力','尺寸稳定性','抗起球起毛性','摩擦牢度','防水性']
+    //         }
+    //     ],
+    //     yAxis : [
+    //         {
+    //             type : 'value'
+    //         }
+    //     ],
+    //     series : [
+    //         {
+    //             name:'属性值',
+    //             type:'bar',
+    //             data:[1, 2, 3, 4, 5, 4, 5, 2],
+    //             markPoint : {
+    //                 data : [
+    //                     {type : 'max', name: '最大值'},
+    //                     {type : 'min', name: '最小值'}
+    //                 ]
+    //             },
+    //             markLine : {
+    //                 data : [
+    //                     {type : 'average', name: '平均值'}
+    //                 ]
+    //             }
+    //         }
+            // {
+            //     name:'降水量',
+            //     type:'bar',
+            //     data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
+            //     markPoint : {
+            //         data : [
+            //             {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183},
+            //             {name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
+            //         ]
+            //     },
+            //     markLine : {
+            //         data : [
+            //             {type : 'average', name : '平均值'}
+            //         ]
+            //     }
+            // }
+    //     ]
+    // };
 
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);

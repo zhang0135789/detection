@@ -48,6 +48,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="downloadPath!=null and downloadPath!='' ">
 				downloadPath=#{downloadPath},
 			</if>
+            <if test="rst!=null and rst!='' ">
+                rst=#{rst},
+            </if>
         </set>
 		where dataId=#{dataId}
 	</update>

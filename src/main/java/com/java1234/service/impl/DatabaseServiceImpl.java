@@ -6,7 +6,6 @@ import com.java1234.entity.Checkdata;
 import com.java1234.entity.Database;
 import com.java1234.service.DatabaseService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -57,8 +56,6 @@ public class DatabaseServiceImpl implements DatabaseService {
         data.setDataId(uuid);
         data.setCreateDate(new Date());
         databaseDao.save(data);
-
-
         return 1;
     }
 
@@ -112,8 +109,10 @@ public class DatabaseServiceImpl implements DatabaseService {
         data.setStateAnalyze(1);
         if(total > standard) {//检测产品为合格
             data.setAnResult("合格");
+            data.setRst("[3,3.5,4,4.5,3,4.6,3.8,4.8]");
         }else {//不合格
             data.setAnResult("不合格");
+            data.setRst("[3,3.5,1,2.5,3,1.6,3.8,2.8]");
         }
         databaseDao.update(data);
 

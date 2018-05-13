@@ -24,6 +24,7 @@ public class Database  {
     private Date foDate; //预测时间
     private String foResult; //预测结果
     private String downloadPath; //下载路径
+    private String rst;
 
     @Override
     public String toString() {
@@ -41,6 +42,7 @@ public class Database  {
                 ", foDate=" + foDate +
                 ", foResult='" + foResult + '\'' +
                 ", downloadPath='" + downloadPath + '\'' +
+                ", rst='" + rst + '\'' +
                 '}';
     }
 
@@ -146,6 +148,14 @@ public class Database  {
 
     public void setDownloadPath(String downloadPath) {
         this.downloadPath = downloadPath;
+    }
+
+    public String getRst() {
+        return rst;
+    }
+
+    public void setRst(String rst) {
+        this.rst = rst;
     }
 }
 

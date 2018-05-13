@@ -42,7 +42,7 @@
 		});
 	}
 	
-	function deleteBlog(){
+	function deleteData(){
 		var selectedRows=$("#dg").datagrid("getSelections");
 		if(selectedRows.length==0){
 			 $.messager.alert("系统提示","请选择要删除的数据！");
@@ -85,7 +85,7 @@
 		 if(row.stateAnalyze != 1){
 		     $.messager.alert("系统提示","无法查看信息，请先检测数据！");
          }else {
-             window.parent.openTab('抽样检测详情', 'analyzeResultData.jsp?id='+row.id+'&dataName='+row.dataName+'&dataId='+row.dataId + '&anResult='+anResult, 'icon-writeblog');
+             window.parent.openTab('抽样检测详情', 'analyzeResultData.jsp?id='+row.id+'&dataName='+row.dataName+'&dataId='+row.dataId + '&anResult='+anResult +'&rst='+row.rst, 'icon-writeblog');
          }
 	}
 	
@@ -104,6 +104,7 @@
         <th field="createDate" width="50" align="center">采集日期</th>
         <th field="stateAnalyze" width="50" align="center" formatter="formatState1">检测状态</th>
         <th field="anResult" width="50" align="center" >检测结果</th>
+        <th field="rst" width="50" align="center" >检测结果集</th>
         <th field="stateForecast" width="50" align="center" formatter="formatState2">预测状态</th>
    	</tr>
    </thead>
@@ -111,7 +112,7 @@
  <div id="tb">
  	<div>
  		<a href="javascript:openDataModifyTab()" class="easyui-linkbutton" iconCls="icon-search" plain="true">查看</a>
- 		<%--<a href="javascript:deleteBlog()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>--%>
+ 		<%--<a href="javascript:deleteData()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>--%>
  	</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
  	<div>
  		&nbsp;标题：&nbsp;<input type="text" id="s_title" size="20" onkeydown="if(event.keyCode==13) searchBlog()"/>
