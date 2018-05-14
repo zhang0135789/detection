@@ -44,10 +44,10 @@ public interface CheckdataDao {
 
     /**
      * 添加信息
-     * @param data
+     * @param checkdata
      * @return
      */
-    public Integer add(Checkdata data);
+    public Integer add(Checkdata checkdata);
 
     /**
      * 根据日期月份分组查询

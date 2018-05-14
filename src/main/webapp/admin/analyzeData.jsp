@@ -29,7 +29,7 @@
         if (value < 100){
             value ++;
             p.progressbar('setValue', value);
-            setTimeout(arguments.callee, 60);
+            setTimeout(arguments.callee, 600);
         }else {
             $.post("<%=path%>/admin/data/analyze.do",
                 {'id':'${param.id}','dataId':'${param.dataId}'

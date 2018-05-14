@@ -28,7 +28,7 @@
         if (value < 100){
             value ++;
             p.progressbar('setValue', value);
-            setTimeout(arguments.callee, 60);
+            setTimeout(arguments.callee, 600);
         }else {
             $.post("<%=path%>/admin/data/forecast.do",
                 {'id':'${param.id}',

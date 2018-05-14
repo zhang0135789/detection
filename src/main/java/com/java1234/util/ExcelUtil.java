@@ -4,6 +4,10 @@ import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -88,10 +92,27 @@ public class ExcelUtil {
 
     /**
      *
+     * @param wb
      */
-    public static void exportExcel() {
-
-
+    public static Map<Integer, List> exportExcel(Workbook wb) {
+        Map<Integer, List> outputText = new HashMap<>();
+        //获取Excel文档中的第一个表单
+        Sheet sheet = wb.getSheetAt(0);
+        int n = 0;
+        for(Row row : sheet) {
+            int rowNum = row.getRowNum();
+            if(rowNum > 1) {
+                List<String> list = new ArrayList<>();
+                for(int i = 0; i < 11; i++) {
+                    row.getCell(i).setCellType(Cell.CELL_TYPE_STRING);
+                    String str = row.getCell(i).getStringCellValue();
+                    list.add(str);
+                }
+                outputText.put(n,list);
+                n++;
+            }
+        }
+        return outputText;
     }
 
 

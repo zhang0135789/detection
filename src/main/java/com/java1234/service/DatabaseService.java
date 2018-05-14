@@ -4,6 +4,7 @@ import com.java1234.entity.Database;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -32,7 +33,7 @@ public interface DatabaseService {
      * 保存数据
      * @param database
      */
-    int save(Database database , MultipartFile file);
+    int save(Database database , MultipartFile file) throws IOException;
 
     /**
      * 删除数据

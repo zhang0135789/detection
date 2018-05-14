@@ -55,26 +55,7 @@ public class DatabaseController {
         String recommendedName = new String(fileName.getBytes(),"iso_8859_1");//设置文件名称的编码格式
         response.setContentType(contentType);//设置导出文件格式
 
-
-
         HSSFWorkbook wb = databaseService.exportExcel(dataId);
-
-
-//        OutputStream os = null;
-//        try {
-//            os = response.getOutputStream();
-//            wb.write(os);
-//        } catch (IOException e) {
-//            log.error("获取输出流失败",e);
-//        }finally {
-//            if(os != null) {
-//                try {
-//                    os.close();
-//                } catch (IOException e) {
-//                    log.error("关闭输出流失败",e);
-//                }
-//            }
-//        }
 
 
         ByteArrayOutputStream os = new ByteArrayOutputStream();
@@ -120,18 +101,17 @@ public class DatabaseController {
      */
     @RequestMapping("/save")
     @ResponseBody
-    public String getData(String dataName ,@RequestParam("filepath") MultipartFile file) {
+    public String getData(String dataName ,@RequestParam("filepath") MultipartFile file) throws IOException {
         int flag = 0;
         String filename = file.getOriginalFilename();
         Database data = new Database();
         data.setDataName(dataName);
         data.setFileName(filename);
 
+
+
         //读取文件信息并保存信息
         flag = databaseService.save(data , file);
-
-
-
 
         return "1";
     }

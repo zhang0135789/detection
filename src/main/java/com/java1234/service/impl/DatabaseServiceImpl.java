@@ -7,10 +7,15 @@ import com.java1234.entity.Database;
 import com.java1234.service.DatabaseService;
 import com.java1234.util.ExcelUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.*;
 
@@ -55,11 +60,44 @@ public class DatabaseServiceImpl implements DatabaseService {
      * @param data
      */
     @Override
-    public int save(Database data , MultipartFile file) {
-        String uuid = UUID.randomUUID().toString();
-        data.setDataId(uuid);
+    @Transactional
+    public int save(Database data , MultipartFile file) throws IOException {
+        String dataId = UUID.randomUUID().toString();
+        data.setDataId(dataId);
         data.setCreateDate(new Date());
+        //保存基本信息
         databaseDao.save(data);
+
+        //保存数据信息
+        //解析excel表格数据
+        FileInputStream fileIn = (FileInputStream) file.getInputStream();
+        Workbook wb = new HSSFWorkbook(fileIn);
+        Map<Integer, List> excelVal = ExcelUtil.exportExcel(wb);
+        System.out.println(excelVal);
+
+        Iterator it = excelVal.entrySet().iterator();
+        while(it.hasNext()) {
+            Checkdata checkdata = new Checkdata();
+            checkdata.setDataId(dataId);
+            Map.Entry entry = (Map.Entry) it.next();
+            List<String> list = (List<String>) entry.getValue();
+
+            checkdata.setScgy(list.get(0));
+            checkdata.setYljg(list.get(1));
+            checkdata.setCpzl(list.get(2));
+            checkdata.setRsxn(new Integer(list.get(3)));
+            checkdata.setYhwz(new Integer(list.get(4)));
+            checkdata.setSld(new Integer(list.get(5)));
+            checkdata.setZwql(new Integer(list.get(6)));
+            checkdata.setCcwd(new Integer(list.get(7)));
+            checkdata.setKqqqm(new Integer(list.get(8)));
+            checkdata.setMcld(new Integer(list.get(9)));
+            checkdata.setFsx(new Integer(list.get(10)));
+
+            checkdataDao.add(checkdata);
+
+        }
+
         return 1;
     }
 
@@ -135,12 +173,12 @@ public class DatabaseServiceImpl implements DatabaseService {
         Database data = new Database();
         data.setDataId(dataId);
         data.setStateAnalyze(1);
+        data.setRst(rst);
         if(total > standard) {//检测产品为合格
             data.setAnResult("合格");
-            data.setRst(rst);
+
         }else {//不合格
             data.setAnResult("不合格");
-            data.setRst(rst);
         }
         databaseDao.update(data);
 

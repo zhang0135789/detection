@@ -18,6 +18,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="foDate" column="foDate"/>
 		<result property="foResult" column="foResult"/>
 		<result property="downloadPath" column="keyWord"/>
+		<result property="rst" column="rst"/>
+		<result property="rst2" column="rst2"/>
 	</resultMap>
 	
 	<!--<select id="countList"  resultMap="BlogResult">-->
