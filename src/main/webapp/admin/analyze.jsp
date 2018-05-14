@@ -40,7 +40,7 @@
 			"title":$("#s_title").val() 
 		});
 	}
-	
+
 	function deleteDatabase(){
 		var selectedRows=$("#dg").datagrid("getSelections");
 		if(selectedRows.length==0){
@@ -54,8 +54,8 @@
 		 var ids=strIds.join(",");
 		 $.messager.confirm("系统提示","您确定要删除这<font color=red>"+selectedRows.length+"</font>条数据吗？",function(r){
 				if(r){
-					$.post("${pageContext.request.contextPath}/admin/blog/delete.do",{ids:ids},function(result){
-						if(result.success){
+					$.post("<%=path%>/admin/data/delete.do",{ids:ids},function(result){
+						if(result== '1'){
 							 $.messager.alert("系统提示","数据已成功删除！");
 							 $("#dg").datagrid("reload");
 						}else{
@@ -67,14 +67,23 @@
 	}
 	
 	
-	function openBlogModifyTab(){
+	function openModifyTab(){
 		 var selectedRows=$("#dg").datagrid("getSelections");
+		 console.log(selectedRows);
 		 if(selectedRows.length!=1){
-			 $.messager.alert("系统提示","请选择一个要修改的博客！");
+			 $.messager.alert("系统提示","请选择一个需要检测的数据！");
 			 return;
 		 }
-		 var row=selectedRows[0];
-		 window.parent.openTab('修改博客','modifyBlog.jsp?id='+row.id,'icon-writeblog');
+        var row = selectedRows[0];
+		 console.log(row);
+        if(row.stateAnalyze == 1){
+            $.messager.alert("系统提示","已经检测，请勿重复操作！");
+            return;
+        }else {
+            row=selectedRows[0];
+            window.parent.openTab('抽样检测','analyzeData.jsp?id='+row.id+'&dataName='+row.dataName+'&dataId='+row.dataId,'icon-writeblog');
+        }
+
 	}
 	
 </script>
@@ -86,22 +95,23 @@
    <thead>
    	<tr>
 		<th field="cb" checkbox="true" align="center"></th>
-		<th field="id" width="20" align="center">编号</th>
-		<th field="dataName" width="200" align="center" >采集数据名称</th>
-		<th field="createDate" width="50" align="center">采集日期</th>
-        <th field="stateAnalyze" width="50" align="center" formatter="formatState1">检测状态</th>
+        <th field="id" width="20" align="center">编号</th>
+		<th field="dataId" width="20" align="center" >通配标识</th>
+        <th field="dataName" width="200" align="center" >采集数据名称</th>
+        <th field="createDate" width="50" align="center">采集日期</th>
+        <th field="stateAnalyze" id="stateAnalyze" width="50" align="center" formatter="formatState1">检测状态</th>
         <th field="stateForecast" width="50" align="center" formatter="formatState2">预测状态</th>
    	</tr>
    </thead>
  </table>
  <div id="tb">
  	<div>
- 		<a href="javascript:openBlogModifyTab()" class="easyui-linkbutton" iconCls="icon-ok" plain="true">分析</a>
+ 		<a href="javascript:openModifyTab()" class="easyui-linkbutton" iconCls="icon-ok" plain="true">分析</a>
  		<a href="javascript:deleteDatabase()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
  	</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
  	<div>
- 		&nbsp;标题：&nbsp;<input type="text" id="s_title" size="20" onkeydown="if(event.keyCode==13) searchBlog()"/>
- 		<a href="javascript:searchBlog()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
+ 		<%--&nbsp;标题：&nbsp;<input type="text" id="s_title" size="20" onkeydown="if(event.keyCode==13) searchBlog()"/>--%>
+ 		<%--&lt;%&ndash;<a href="javascript:searchBlog()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>&ndash;%&gt;--%>
  	</div>
  </div>
 </body>

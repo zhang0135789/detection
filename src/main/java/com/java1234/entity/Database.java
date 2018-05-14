@@ -14,14 +14,39 @@ public class Database  {
     private Integer id; // 编号
     private String dataId; //数据随机号，主键
     private String dataName; // 数据名字
+    private String fileName; //文件名字
     private String filePath; // 数据文件路径
     private Date createDate; // 采集数据时间
     private Integer stateAnalyze; // 分析状态
     private Date anDate; // 分析时间
+    private String anResult; //分析结果
     private Integer stateForecast; // 预测状态
     private Date foDate; //预测时间
-    private String downloadOPath; //下载路径
+    private String foResult; //预测结果
+    private String downloadPath; //下载路径
+    private String rst; //检测结果集
+    private String rst2; //预测结果集
 
+    @Override
+    public String toString() {
+        return "Database{" +
+                "id=" + id +
+                ", dataId='" + dataId + '\'' +
+                ", dataName='" + dataName + '\'' +
+                ", fileName='" + fileName + '\'' +
+                ", filePath='" + filePath + '\'' +
+                ", createDate=" + createDate +
+                ", stateAnalyze=" + stateAnalyze +
+                ", anDate=" + anDate +
+                ", anResult='" + anResult + '\'' +
+                ", stateForecast=" + stateForecast +
+                ", foDate=" + foDate +
+                ", foResult='" + foResult + '\'' +
+                ", downloadPath='" + downloadPath + '\'' +
+                ", rst='" + rst + '\'' +
+                ", rst2='" + rst2 + '\'' +
+                '}';
+    }
 
     public Integer getId() {
         return id;
@@ -45,6 +70,14 @@ public class Database  {
 
     public void setDataName(String dataName) {
         this.dataName = dataName;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     public String getFilePath() {
@@ -79,6 +112,14 @@ public class Database  {
         this.anDate = anDate;
     }
 
+    public String getAnResult() {
+        return anResult;
+    }
+
+    public void setAnResult(String anResult) {
+        this.anResult = anResult;
+    }
+
     public Integer getStateForecast() {
         return stateForecast;
     }
@@ -95,27 +136,36 @@ public class Database  {
         this.foDate = foDate;
     }
 
-    public String getDownloadOPath() {
-        return downloadOPath;
+    public String getFoResult() {
+        return foResult;
     }
 
-    public void setDownloadOPath(String downloadOPath) {
-        this.downloadOPath = downloadOPath;
+    public void setFoResult(String foResult) {
+        this.foResult = foResult;
     }
 
-    @Override
-    public String toString() {
-        return "Database{" +
-                "id=" + id +
-                ", dataId='" + dataId + '\'' +
-                ", dataName='" + dataName + '\'' +
-                ", filePath='" + filePath + '\'' +
-                ", createDate=" + createDate +
-                ", stateAnalyze=" + stateAnalyze +
-                ", anDate=" + anDate +
-                ", stateForecast=" + stateForecast +
-                ", foDate=" + foDate +
-                ", downloadOPath='" + downloadOPath + '\'' +
-                '}';
+    public String getDownloadPath() {
+        return downloadPath;
+    }
+
+    public void setDownloadPath(String downloadPath) {
+        this.downloadPath = downloadPath;
+    }
+
+    public String getRst() {
+        return rst;
+    }
+
+    public void setRst(String rst) {
+        this.rst = rst;
+    }
+
+    public String getRst2() {
+        return rst2;
+    }
+
+    public void setRst2(String rst2) {
+        this.rst2 = rst2;
     }
 }
+

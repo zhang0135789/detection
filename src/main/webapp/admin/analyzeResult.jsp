@@ -38,11 +38,11 @@
 	
 	function searchBlog(){
 		$("#dg").datagrid('load',{
-			"title":$("#s_title").val() 
+			"dataName":$("#s_title").val()
 		});
 	}
 	
-	function deleteBlog(){
+	function deleteData(){
 		var selectedRows=$("#dg").datagrid("getSelections");
 		if(selectedRows.length==0){
 			 $.messager.alert("系统提示","请选择要删除的数据！");
@@ -68,14 +68,25 @@
 	}
 	
 	
-	function openBlogModifyTab(){
+	function openDataModifyTab(){
 		 var selectedRows=$("#dg").datagrid("getSelections");
+
+
 		 if(selectedRows.length!=1){
-			 $.messager.alert("系统提示","请选择一个要修改的博客！");
+			 $.messager.alert("系统提示","请选择一条数据！");
 			 return;
 		 }
 		 var row=selectedRows[0];
-		 window.parent.openTab('修改博客','modifyBlog.jsp?id='+row.id,'icon-writeblog');
+         var anResult = 0;
+         if(row.anResult == "合格"){
+             anResult = 1;
+         }
+
+		 if(row.stateAnalyze != 1){
+		     $.messager.alert("系统提示","无法查看信息，请先检测数据！");
+         }else {
+             window.parent.openTab('抽样检测详情', 'analyzeResultData.jsp?id='+row.id+'&dataName='+row.dataName+'&dataId='+row.dataId +'&rst='+row.rst, 'icon-writeblog');
+         }
 	}
 	
 </script>
@@ -88,21 +99,24 @@
    	<tr>
         <th field="cb" checkbox="true" align="center"></th>
         <th field="id" width="20" align="center">编号</th>
+        <th field="dataId" width="20" align="center" >通配标识</th>
         <th field="dataName" width="200" align="center" >采集数据名称</th>
         <th field="createDate" width="50" align="center">采集日期</th>
         <th field="stateAnalyze" width="50" align="center" formatter="formatState1">检测状态</th>
+        <th field="anResult" width="50" align="center" >检测结果</th>
+        <th field="rst" width="50" align="center" >检测结果集</th>
         <th field="stateForecast" width="50" align="center" formatter="formatState2">预测状态</th>
    	</tr>
    </thead>
  </table>
  <div id="tb">
  	<div>
- 		<a href="javascript:openBlogModifyTab()" class="easyui-linkbutton" iconCls="icon-search" plain="true">查看</a>
- 		<%--<a href="javascript:deleteBlog()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>--%>
+ 		<a href="javascript:openDataModifyTab()" class="easyui-linkbutton" iconCls="icon-search" plain="true">查看</a>
+ 		<%--<a href="javascript:deleteData()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>--%>
  	</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
  	<div>
- 		&nbsp;标题：&nbsp;<input type="text" id="s_title" size="20" onkeydown="if(event.keyCode==13) searchBlog()"/>
- 		<a href="javascript:searchBlog()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
+ 		<%--&nbsp;标题：&nbsp;<input type="text" id="s_title" size="20" onkeydown="if(event.keyCode==13) searchBlog()"/>--%>
+ 		<%--<a href="javascript:searchBlog()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>--%>
  	</div>
  </div>
 </body>

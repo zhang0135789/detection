@@ -68,15 +68,21 @@
 	}
 	
 	
-	function openBlogModifyTab(){
+	function openDataModifyTab(){
 		 var selectedRows=$("#dg").datagrid("getSelections");
 		 if(selectedRows.length!=1){
-			 $.messager.alert("系统提示","请选择一个要修改的博客！");
+			 $.messager.alert("系统提示","请选择一条数据！");
 			 return;
 		 }
 		 var row=selectedRows[0];
-		 window.parent.openTab('修改博客','modifyBlog.jsp?id='+row.id,'icon-writeblog');
-	}
+		 if(row.stateAnalyze != 1 ) {
+             $.messager.alert("系统提示","请先检测数据，再进行预测！");
+		 }else if(row.stateForecast == 1){
+             $.messager.alert("系统提示","此数据已经预测，请选择其他数据！");
+		 }else{
+             window.parent.openTab('预测界面', 'forecastData.jsp?id=' + row.id + '&dataName=' + row.dataName+'&dataId='+row.dataId, 'icon-writeblog');
+         }
+	 }
 	
 </script>
 </head>
@@ -88,6 +94,7 @@
    	<tr>
 		<th field="cb" checkbox="true" align="center"></th>
 		<th field="id" width="20" align="center">编号</th>
+		<th field="dataId" width="20" align="center" >通配标识</th>
 		<th field="dataName" width="200" align="center" >采集数据名称</th>
 		<th field="createDate" width="50" align="center">采集日期</th>
 		<th field="stateAnalyze" width="50" align="center" formatter="formatState1">检测状态</th>
@@ -97,12 +104,12 @@
  </table>
  <div id="tb">
  	<div>
- 		<a href="javascript:openBlogModifyTab()" class="easyui-linkbutton" iconCls="icon-tip" plain="true">预测</a>
+ 		<a href="javascript:openDataModifyTab()" class="easyui-linkbutton" iconCls="icon-tip" plain="true">预测</a>
  		<%--<a href="javascript:deleteBlog()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>--%>
  	</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
  	<div>
- 		&nbsp;标题：&nbsp;<input type="text" id="s_title" size="20" onkeydown="if(event.keyCode==13) searchBlog()"/>
- 		<a href="javascript:searchBlog()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
+ 		<%--&nbsp;标题：&nbsp;<input type="text" id="s_title" size="20" onkeydown="if(event.keyCode==13) searchBlog()"/>--%>
+ 		<%--<a href="javascript:searchBlog()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>--%>
  	</div>
  </div>
 </body>
