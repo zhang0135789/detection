@@ -129,7 +129,7 @@
 		</div>--%>
 		<div title="预测"  data-options="iconCls:'icon-plgl'" style="padding:10px">
 			<a href="javascript:openTab('预测','forecast.jsp','icon-review')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-review'" style="width: 150px">预测</a>
-			<a href="javascript:openTab('预测结果','forecastResult.jsp','icon-plgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-plgl'" style="width: 150px;">测结果</a>
+			<a href="javascript:openTab('预测结果','forecastResult.jsp','icon-plgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-plgl'" style="width: 150px;">预测结果</a>
 		</div>
 		<div title="生成报表"  data-options="iconCls:'icon-grxx'" style="padding:10px">
 			<a href="javascript:openTab('分析结果导出','resultExport.jsp','icon-grxxxg')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-grxxxg'" style="width: 150px;">分析结果导出</a>

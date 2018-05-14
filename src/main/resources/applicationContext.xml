@@ -18,7 +18,9 @@
 	<!-- 配置数据源 -->
 	<bean id="dataSource"
 		class="com.alibaba.druid.pool.DruidDataSource">
+
 		<property name="url" value="jdbc:mysql://localhost:3306/db_detection?useUnicode=true&amp;characterEncoding=UTF-8"/>
+
 		<property name="username" value="root"/>
 		<property name="password" value="root"/>
 	</bean>
@@ -37,6 +39,9 @@
 		<property name="basePackage" value="com.java1234.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 	</bean>
+
+	<!-- 开启事务注解驱动 -->
+	<tx:annotation-driven />
 
 	<!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
 	<bean id="transactionManager"
@@ -79,8 +84,10 @@
 	<!-- 配置事务通知属性 -->  
     <tx:advice id="txAdvice" transaction-manager="transactionManager">  
         <!-- 定义事务传播属性 -->  
-        <tx:attributes>  
-            <tx:method name="insert*" propagation="REQUIRED" />  
+        <tx:attributes>
+			<tx:method name="analze*" propagation="REQUIRED" />
+			<tx:method name="forecast*" propagation="REQUIRED" />
+			<tx:method name="insert*" propagation="REQUIRED" />
             <tx:method name="update*" propagation="REQUIRED" />  
             <tx:method name="edit*" propagation="REQUIRED" />  
             <tx:method name="save*" propagation="REQUIRED" />  

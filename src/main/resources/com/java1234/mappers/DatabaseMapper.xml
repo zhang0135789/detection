@@ -6,20 +6,59 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<resultMap type="Database" id="DatabaseResult">
 		<result property="id" column="id"/>
-		<result property="dataId" column="title"/>
-		<result property="dataName" column="summary"/>
-		<result property="filePath" column="releaseDate"/>
-		<result property="upDate" column="clickHit"/>
-		<result property="stateForecast" column="replyHit"/>
-		<result property="foDate" column="content"/>
+		<result property="dataId" column="dataId"/>
+		<result property="dataName" column="dataName"/>
+		<result property="fileName" column="fileName"/>
+		<result property="filePath" column="filePath"/>
+		<result property="createDate" column="createDate"/>
+		<result property="stateAnalyze" column="stateAnalyze"/>
+		<result property="anDate" column="anDate"/>
+		<result property="anResult" column="anResult"/>
+		<result property="stateForecast" column="stateForecast"/>
+		<result property="foDate" column="foDate"/>
+		<result property="foResult" column="foResult"/>
 		<result property="downloadPath" column="keyWord"/>
-
 	</resultMap>
 	
 	<!--<select id="countList"  resultMap="BlogResult">-->
 		<!--SELECT DATE_FORMAT(releaseDate,'%Y年%m月') AS releaseDateStr ,COUNT(*) AS blogCount  FROM t_blog GROUP BY DATE_FORMAT(releaseDate,'%Y年%m月') ORDER BY DATE_FORMAT(releaseDate,'%Y年%m月') DESC;-->
 	<!--</select>-->
-	
+
+	<update id="update" parameterType="Database">
+		update t_database
+		<set>
+			<if test="stateAnalyze!=null and stateAnalyze!='' ">
+				stateAnalyze=#{stateAnalyze},
+			</if>
+			<if test="anDate!=null and anDate!='' ">
+				anDate=#{anDate},
+			</if>
+			<if test="anResult!=null and anResult!='' ">
+				anResult=#{anResult},
+			</if>
+			<if test="stateForecast!=null and stateForecast!=''">
+				stateForecast=#{stateForecast},
+			</if>
+			<if test="foDate!=null and foDate!=''">
+				foDate=#{foDate},
+			</if>
+			<if test="foResult!=null and foResult!=''">
+				foResult=#{foResult},
+			</if>
+			<if test="downloadPath!=null and downloadPath!='' ">
+				downloadPath=#{downloadPath},
+			</if>
+            <if test="rst!=null and rst!='' ">
+                rst=#{rst},
+            </if>
+            <if test="rst2!=null and rst2!='' ">
+                rst2=#{rst2},
+            </if>
+        </set>
+		where dataId=#{dataId}
+	</update>
+
+
 	<select id="list" parameterType="Map" resultMap="DatabaseResult">
 		select * from t_database
 		<where>
@@ -43,57 +82,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</select>
 
-<!--
-        <select id="findById" parameterType="Integer" resultMap="BlogResult">
-            select * from t_blog where id=#{id}
-        </select>
+	<insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Database">
+		insert into t_database (dataId ,dataName,fileName , createDate )
+		values(#{dataId} ,#{dataName} , #{fileName} ,#{createDate})
+	</insert>
 
-        <update id="update" parameterType="Blog">
-            update t_blog
-            <set>
-                <if test="title!=null and title!='' ">
-                    title=#{title},
-                </if>
-                <if test="summary!=null and summary!='' ">
-                    summary=#{summary},
-                </if>
-                <if test="content!=null and content!='' ">
-                    content=#{content},
-                </if>
-                <if test="blogType.id!=null ">
-                    typeId=#{blogType.id},
-                </if>
-                <if test="clickHit!=null ">
-                    clickHit=#{clickHit},
-                </if>
-                <if test="replyHit!=null ">
-                    replyHit=#{replyHit},
-                </if>
-                <if test="keyWord!=null and keyWord!='' ">
-                    keyWord=#{keyWord},
-                </if>
-            </set>
-            where id=#{id}
-        </update>
+	<delete id="delete" parameterType="Integer">
+            delete from t_database where id=#{id}
+	</delete>
 
-        <select id="getLastBlog" parameterType="Integer" resultMap="BlogResult">
-            SELECT * FROM t_blog WHERE id&lt;#{id} ORDER BY id DESC LIMIT 1
-        </select>
-
-        <select id="getNextBlog" parameterType="Integer" resultMap="BlogResult">
-            SELECT * FROM t_blog WHERE id&gt;#{id} ORDER BY id ASC LIMIT 1
-        </select>
+    <select id="findById" parameterType="String" resultType="Database">
+                select * from t_database where dataId=#{dataId}
+    </select>
 
 
-        <insert id="add" useGeneratedKeys="true" keyProperty="id" parameterType="Blog">
-            insert into t_blog values(null,#{title},#{summary},now(),0,0,#{content},#{blogType.id},#{keyWord})
-        </insert>
+	<!--
 
-        <delete id="delete" parameterType="Integer">
-            delete from t_blog where id=#{id}
-        </delete>
 
-        <select id="getBlogByTypeId" parameterType="Integer" resultType="Integer">
-            select count(*) from t_blog where typeId=#{typeId}
-        </select>-->
+
+
+            <select id="getLastBlog" parameterType="Integer" resultMap="BlogResult">
+                SELECT * FROM t_blog WHERE id&lt;#{id} ORDER BY id DESC LIMIT 1
+            </select>
+
+            <select id="getNextBlog" parameterType="Integer" resultMap="BlogResult">
+                SELECT * FROM t_blog WHERE id&gt;#{id} ORDER BY id ASC LIMIT 1
+            </select>
+
+
+
+
+
+            <select id="getBlogByTypeId" parameterType="Integer" resultType="Integer">
+                select count(*) from t_blog where typeId=#{typeId}
+            </select>-->
 </mapper> 

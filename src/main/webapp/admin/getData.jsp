@@ -29,31 +29,51 @@
     <script type="text/javascript">
 
         function submitData() {
-            // alert(111);
-            var dataName = $("#dataName").val();
-            var filepath = $("#fb").val();
-            console.log(dataName + "----" + filepath);
-            if(dataName == null || dataName == '') {
-                alert("请输入数据名称！");
-            }else if(filepath == null || filepath == '' ) {
-                alert("请上传需要检测的数据！");
-            }else{
 
-                $.post("<%=path%>/admin/blog/save.do",
-                        {
-                        'dataName': dataName,
-                        'filepath': filepath,
-                        },
-                        function (result) {
-                            if (result.success) {
-                               alert("数据上传成功成功！");
-                                resetValue();
-                            } else {
-                                alert("数据上传失败失败！");
-                            }
-                        },
-                        "json");
+            $('#formflag').form('submit', {
+                    url:"<%=path%>/admin/data/save.do",
+                onSubmit: function(){
+                // do some check
+                // return false to prevent submit;
+            },
+            success:function(result){
+                if (result == "1") {
+                    $.messager.alert("系统提示","数据上传成功成功！");
+                    resetValue();
+                } else {
+                    $.messager.alert("系统提示","数据上传失败失败！");
+                }
             }
+        });
+
+
+            // alert(111);
+            <%--var dataName = $("#dataName").val();--%>
+            <%--var filepath = $("#fb");--%>
+            <%--console.log(filepath);--%>
+            <%--if(dataName == null || dataName == '') {--%>
+                <%--alert("请输入数据名称！");--%>
+            <%--}else if(filepath == null || filepath == '' ) {--%>
+                <%--alert("请上传需要检测的数据！");--%>
+            <%--}else{--%>
+                <%--var formData = new formData();--%>
+                <%--formData.append('filepath',filepath.files[0]);--%>
+
+                <%--$.ajax({url:"<%=path%>/admin/data/save.do?dataName=" + dataName ,--%>
+                        <%--type:"POST",--%>
+                        <%--data:formData,--%>
+                        <%--contentType:false,--%>
+                        <%--processData:false,--%>
+                        <%--success: function (result) {--%>
+                                    <%--if (result == "1") {--%>
+                                       <%--$.messager.alert("系统提示","数据上传成功成功！");--%>
+                                        <%--resetValue();--%>
+                                    <%--} else {--%>
+                                        <%--$.messager.alert("系统提示","数据上传失败失败！");--%>
+                                    <%--}--%>
+                        <%--},--%>
+                       <%--});--%>
+            <%--}--%>
         }
 
         // 重置数据
@@ -71,59 +91,29 @@
 </head>
 <body style="margin: 10px">
 <div id="p" class="easyui-panel" title="" style="padding: 10px">
-    <table cellspacing="20px">
-        <tr>
-            <td width="100px">采集数据名称：</td>
-            <td><input type="text" id="dataName" name="dataName" style="width: 150px;" value=""/></td>
-        </tr>
-        <%--<tr>--%>
-            <%--<td>所属类别：</td>--%>
-            <%--<td>--%>
-                <%--<select class="easyui-combobox" style="width: 154px" id="blogTypeId" name="blogType.id" editable="false" panelHeight="auto" >--%>
-                    <%--<option value="">数据所属类型类别...</option>--%>
-                    <%--<c:forEach var="blogType" items="${blogTypeCountList }">--%>
-                        <%--<option value="${blogType.id }">${blogType.typeName }</option>--%>
-                    <%--</c:forEach>--%>
-                <%--</select>--%>
-            <%--</td>--%>
-        <%--</tr>--%>
-        <tr>
-            <td width="80px">上传数据：</td>
-            <td style="color: orangered">(只能上传excel文件)</td>
-            <td>
-                <%--<input   class="easyui-filebox" style="width:300px" />--%>
-                <input id="fb" type="file" style="width:300px">
-            </td>
-        </tr>
+    <form id="formflag"   method="post" enctype="multipart/form-data" >
+        <table cellspacing="20px">
+            <tr>
+                <td width="100px">采集数据名称：</td>
+                <td><input type="text" id="dataName" name="dataName" style="width: 150px;" value=""/></td>
+            </tr>
+            <tr>
+                <td width="80px">上传数据：</td>
+                <td style="color: orangered">(只能上传excel文件)</td>
+                <td>
+                    <%--<input   class="easyui-filebox" style="width:300px" />--%>
+                    <input id="filepath" name="filepath" type="file" style="width:300px" class="addImgH_form" target="up">
+                </td>
+            </tr>
 
-
-       <%-- <tr>
-            <td valign="top">博客内容：</td>
-            <td>
-                <script id="editor" type="text/plain" style="width:100%;height:500px;"></script>
-            </td>
-        </tr>
-        <tr>
-            <td>关键字：</td>
-            <td>
-            <input type="text" id="keyWord" name="keyWord" style="width: 400px;"/>&nbsp;(多个关键字中间用空格隔开)
-            </td>
-        </tr>--%>
-        <tr>
-            <td></td>
-            <td>
-            <a href="javascript:submitData()" class="easyui-linkbutton" data-options="iconCls:'icon-submit'">上传数据</a>
-            </td>
-        </tr>
-    </table>
+            <tr>
+                <td></td>
+                <td>
+                <a href="javascript:submitData()" class="easyui-linkbutton" data-options="iconCls:'icon-submit'">上传数据</a>
+                </td>
+            </tr>
+        </table>
+    </form>
 </div>
-    <script type = "text/javascript" >
-
-            //实例化编辑器
-            //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-            // var ue = UE.getEditor('editor');
-
-
-    </script>
 </body>
 </html>
