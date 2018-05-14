@@ -36,8 +36,7 @@
    			<td width="100px">抽样检测数据：</td>
    			<td>
                 <input type="text" id="id" name="id" value="${param.id}"  hidden="true">
-                <input type="text" id="dataId" name="dataId"  value="${param.dataId}" hidden="false"/>
-                <input type="text" id="dataName" name="dataName" style="width: 230px;" value="${param.dataName}" disabled="disabled"/>
+                <input type="text" id="dataId" name="dataId" style="width: 300px;" value="${param.dataId}" disabled="disabled"/>
             </td>
    		</tr>
 
@@ -61,11 +60,10 @@
         </tr>
 
    		<tr>
-   			<%--<td>预测下批产品合格率：</td>--%>
-   			<%--<td>--%>
-                <%--<div id="test1" hidden="true"><font color="red">合格</font></div>--%>
-                <%--<div id="test2" hidden="false"><font color="red">不合格</font></div>--%>
-   			<%--</td>--%>
+            <%--<div ><font color="red">--%>
+                <%--<c:if test="${param.foResult == 1 }">合格</c:if>--%>
+                <%--<c:if test="${param.foResult == 0 }">不合格</c:if>--%>
+            <%--</font></div>--%>
    		</tr>
    	</table>
  </div>

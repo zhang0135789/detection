@@ -55,11 +55,10 @@
 <div id="p" class="easyui-panel" title="预测界面" style="padding: 10px">
  	<table cellspacing="20px">
    		<tr>
-   			<td width="80px">预测数据：</td>
+   			<td width="80px">预测数据（标识符）：</td>
    			<td>
                 <input type="text" id="id" name="id" value="${param.id}"  hidden="false">
-                <input type="text" id="dataId" name="dataId"  value="${param.dataId}" hidden="false"/>
-                <input type="text" id="dataName" name="dataName" style="width: 200px;" value="${param.dataName}" disabled="disabled"/>
+                <input type="text" id="dataId" name="dataId" style="width: 300px;" value="${param.dataId}" disabled="disabled"/>
             </td>
    		</tr>
 
@@ -83,32 +82,6 @@
    	</table>
  </div>
 
- <%--<script type="text/javascript">--%>
-
-    <%--//实例化编辑器--%>
-    <%--//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例--%>
-    <%--var ue = UE.getEditor('editor');--%>
-
-    <%--ue.addListener("ready",function(){--%>
-        <%--//通过ajax请求数据--%>
-        <%--UE.ajax.request("<%=path%>/admin/blog/findById.do",--%>
-            <%--{--%>
-                <%--method:"post",--%>
-                <%--async : false,  --%>
-                <%--data:{"id":"${param.id}"},--%>
-                <%--onsuccess:function(result){--%>
-                	<%--result = eval("(" + result.responseText + ")");  --%>
-                	<%--$("#title").val(result.title);--%>
-                	<%--$("#keyWord").val(result.keyWord);--%>
-       				<%--$("#blogTypeId").combobox("setValue",result.blogType.id);--%>
-       				<%--UE.getEditor('editor').setContent(result.content);--%>
-                <%--}--%>
-            <%--}--%>
-        <%--);--%>
-    <%--});--%>
-    <%----%>
-   <%----%>
-<%--</script>--%>
 </body>
 </html>
 

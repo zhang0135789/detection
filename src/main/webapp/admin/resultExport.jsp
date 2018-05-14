@@ -31,16 +31,6 @@
         }
     }
 	
-	function formatTitle(val,row){
-		return "<a target='_blank' href='${pageContext.request.contextPath}/blog/articles/"+row.id+".html'>"+val+"</a>"
-	}
-	
-	function searchBlog(){
-		$("#dg").datagrid('load',{
-			"title":$("#s_title").val() 
-		});
-	}
-	
 
 	
 	
@@ -54,18 +44,6 @@
 
 		 if(row.stateAnalyze=="1") {
 
-             <%--$.ajax({--%>
-                 <%--url: "<%=path%>/admin/data/exportExcel.do",--%>
-                 <%--type: 'post',--%>
-                 <%--data: {'dataId': row.dataId},--%>
-                 <%--success: function (data, status, xhr) {--%>
-                     <%--console.log("Download file DONE!");--%>
-                     <%--console.log(data); // ajax方式请求的数据只能存放在javascipt内存空间，可以通过javascript访问，但是无法保存到硬盘--%>
-                     <%--console.log(status);--%>
-                     <%--console.log(xhr);--%>
-                     <%--console.log("=====================");--%>
-                 <%--}--%>
-             <%--});--%>
 
 
              console.log("ajaxDownloadSynchronized");
@@ -74,17 +52,6 @@
              var form = $("<form></form>").attr("action", url).attr("method", "post");
              form.append($("<input></input>").attr("type", "hidden").attr("name", "fileName").attr("value", fileName));
              form.appendTo('body').submit().remove();
-
-             <%--$.post("<%=path%>/admin/data/exportExcel.do",--%>
-                 <%--{dataId:row.dataId},--%>
-                 <%--function(result){--%>
-                     <%--if(result=="1"){--%>
-                         <%--$.messager.alert("系统提示","数据导出成功");--%>
-                         <%--$("#dg").datagrid("reload");--%>
-                     <%--}else{--%>
-                         <%--$.messager.alert("系统提示","数据导出失败");--%>
-                     <%--}}--%>
-                 <%--,"json");--%>
 		 }else {
              $.messager.alert("系统提示","请先检测数据，在进行导出操作！");
 		 }
@@ -116,8 +83,6 @@
  		<%--<a href="javascript:deleteBlog()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>--%>
  	</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
  	<div>
- 		<%--&nbsp;标题：&nbsp;<input type="text" id="s_title" size="20" onkeydown="if(event.keyCode==13) searchBlog()"/>--%>
- 		<%--<a href="javascript:searchBlog()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>--%>
  	</div>
  </div>
 </body>

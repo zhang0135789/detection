@@ -173,12 +173,12 @@ public class DatabaseServiceImpl implements DatabaseService {
         Database data = new Database();
         data.setDataId(dataId);
         data.setStateAnalyze(1);
-        data.setRst(rst);
         if(total > standard) {//检测产品为合格
             data.setAnResult("合格");
-
+            data.setRst(rst);
         }else {//不合格
             data.setAnResult("不合格");
+            data.setRst(rst);
         }
         databaseDao.update(data);
 

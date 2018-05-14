@@ -46,34 +46,6 @@
             }
         });
 
-
-            // alert(111);
-            <%--var dataName = $("#dataName").val();--%>
-            <%--var filepath = $("#fb");--%>
-            <%--console.log(filepath);--%>
-            <%--if(dataName == null || dataName == '') {--%>
-                <%--alert("请输入数据名称！");--%>
-            <%--}else if(filepath == null || filepath == '' ) {--%>
-                <%--alert("请上传需要检测的数据！");--%>
-            <%--}else{--%>
-                <%--var formData = new formData();--%>
-                <%--formData.append('filepath',filepath.files[0]);--%>
-
-                <%--$.ajax({url:"<%=path%>/admin/data/save.do?dataName=" + dataName ,--%>
-                        <%--type:"POST",--%>
-                        <%--data:formData,--%>
-                        <%--contentType:false,--%>
-                        <%--processData:false,--%>
-                        <%--success: function (result) {--%>
-                                    <%--if (result == "1") {--%>
-                                       <%--$.messager.alert("系统提示","数据上传成功成功！");--%>
-                                        <%--resetValue();--%>
-                                    <%--} else {--%>
-                                        <%--$.messager.alert("系统提示","数据上传失败失败！");--%>
-                                    <%--}--%>
-                        <%--},--%>
-                       <%--});--%>
-            <%--}--%>
         }
 
         // 重置数据
@@ -82,10 +54,6 @@
             $("#fb").val("");
         }
 
-        // $('#fb').filebox({
-        //     buttonText: '选择文件',
-        //     buttonAlign: 'left'
-        // })
 
     </script>
 </head>

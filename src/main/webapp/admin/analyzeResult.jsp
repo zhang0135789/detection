@@ -32,41 +32,6 @@
     }
 
 
-    <%--function formatTitle(val,row){--%>
-		<%--return "<a target='_blank' href='${pageContext.request.contextPath}/blog/articles/"+row.id+".html'>"+val+"</a>"--%>
-	<%--}--%>
-	
-	function searchBlog(){
-		$("#dg").datagrid('load',{
-			"dataName":$("#s_title").val()
-		});
-	}
-	
-	function deleteData(){
-		var selectedRows=$("#dg").datagrid("getSelections");
-		if(selectedRows.length==0){
-			 $.messager.alert("系统提示","请选择要删除的数据！");
-			 return;
-		 }
-		 var strIds=[];
-		 for(var i=0;i<selectedRows.length;i++){
-			 strIds.push(selectedRows[i].id);
-		 }
-		 var ids=strIds.join(",");
-		 $.messager.confirm("系统提示","您确定要删除这<font color=red>"+selectedRows.length+"</font>条数据吗？",function(r){
-				if(r){
-					$.post("${pageContext.request.contextPath}/admin/blog/delete.do",{ids:ids},function(result){
-						if(result.success){
-							 $.messager.alert("系统提示","数据已成功删除！");
-							 $("#dg").datagrid("reload");
-						}else{
-							$.messager.alert("系统提示","数据删除失败！");
-						}
-					},"json");
-				} 
-	   });
-	}
-	
 	
 	function openDataModifyTab(){
 		 var selectedRows=$("#dg").datagrid("getSelections");
@@ -115,8 +80,6 @@
  		<%--<a href="javascript:deleteData()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>--%>
  	</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
  	<div>
- 		<%--&nbsp;标题：&nbsp;<input type="text" id="s_title" size="20" onkeydown="if(event.keyCode==13) searchBlog()"/>--%>
- 		<%--<a href="javascript:searchBlog()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>--%>
  	</div>
  </div>
 </body>

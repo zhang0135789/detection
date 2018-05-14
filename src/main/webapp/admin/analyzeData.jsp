@@ -57,11 +57,11 @@
 <div id="p" class="easyui-panel" title="抽样检测" style="padding: 10px">
  	<table cellspacing="20px">
    		<tr>
-   			<td width="80px">抽样检测数据：</td>
+   			<td width="100px">抽样检测数据（标识）：</td>
    			<td>
                 <input type="text" id="id" name="id" value="${param.id}"  hidden="false">
-                <input type="text" id="dataName" name="dataName" style="width: 200px;" value="${param.dataName}" disabled="disabled"/>
-				<input type="text" id="dataId" name="dataId"  value="${param.dataId}" hidden="false"/>
+                <%--<input type="text" id="dataName" name="dataName" style="width: 200px;" value="${param.dataName}" disabled="disabled"/>--%>
+				<input type="text" id="dataId" name="dataId" style="width: 300px;" value="${param.dataId}" disabled="disabled"/>
 
 			</td>
    		</tr>

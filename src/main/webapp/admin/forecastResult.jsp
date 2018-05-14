@@ -31,15 +31,7 @@
         }
     }
 
-    function formatTitle(val,row){
-		return "<a target='_blank' href='<%=path%>/blog/articles/"+row.id+".html'>"+val+"</a>"
-	}
 
-	function searchBlog(){
-		$("#dg").datagrid('load',{
-			"title":$("#s_title").val() 
-		});
-	}
 
 	
 	
@@ -83,8 +75,6 @@
  		<%--<a href="javascript:deleteBlog()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>--%>
  	</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
  	<div>
- 		<%--&nbsp;标题：&nbsp;<input type="text" id="s_title" size="20" onkeydown="if(event.keyCode==13) searchBlog()"/>--%>
- 		<%--&lt;%&ndash;<a href="javascript:searchBlog()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>&ndash;%&gt;--%>
  	</div>
  </div>
 </body>
