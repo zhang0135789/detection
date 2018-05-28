@@ -1,0 +1,116 @@
+算法：
+
+java 封装好了的random生成随机数，的random库函数，但是不能解决重复性问题，而抽样本身有一个隐含的规则就是不要有重复数据。
+因此使用算法尝试抽样,
+
+第一次尝试：朴素随机算法
+	这个算法就是随机，每次产生一个随机数，并加入集合，代码实现方式如下：
+	private void simpleRandom(int start, int end, int count) {
+		System.out.println("朴素随机算法：");
+		StringBuffer buffer = new StringBuffer();
+		for (int i = 0;
+		i < count;
+		i++) {
+		int random = NumberUtils.randomInteger(start, end);
+		buffer.append(i == 0 ? ("[" + random) : (", " + random));
+		}
+		buffer.append("]");
+		System.out.println(buffer);
+		}
+		
+		
+第二次尝试：检查存在性随机算法
+	上一个算法可能会有重复数据，因此在生成随机数的时候进行检测一下这个数是不是已经存在了，如果存在就重新生成。代码实现如下
+	private void checkRandom(int start, int end, int count) {
+		System.out.println("检查存在性随机算法：");
+		StringBuffer buffer = new StringBuffer();
+		List<Integer> save = new ArrayList<>();
+		for (int i = 0;
+		i < count;
+		i++) {
+		int random = NumberUtils.randomInteger(start, end);
+		if (exits(save, random)) {
+		i--;
+		continue;
+		}
+		save.add(random);
+		buffer.append(i == 0 ? ("[" + random) : (", " + random));
+		}
+		buffer.append("]");
+		System.out.println(buffer);
+		}
+
+第三次尝试：元素移除随机算法
+	数据重复的问题已经别解决了，但是，新的问题又出现了，我们需要花费很多的时间去生成随机抽样随机数。这里，在一个集合中去随机一个数，当这个被选中的时候就remove掉，那么下次再随机的时候是不是就不会再随机到这个数了？这样就很好地解决了随机数的重复问题。代码如下：
+	
+	private void removeRandom(int start, int end, int count) {
+	System.out.println("元素移除随机算法：");
+	StringBuffer buffer = new StringBuffer();
+	List<Integer> numbers = initList(start, end);
+	for (int i = 0;
+	i < count;
+	i++) {
+	int random = NumberUtils.randomInteger(count - i);
+	buffer.append(i == 0 ? ("[" + numbers.get(random)) : (", " + numbers.get(random)));
+	numbers.remove(random);
+	}
+	buffer.append("]");
+	System.out.println(buffer);
+	}
+
+第四次尝试：递归Floyd随机算法（类似状态转移随机算法）
+	Floyd算法也是一种状态的转移过程。该算法会要求输入一个List或是array来保存已经确定的随机数。在递归的过程中，我们把第i个随机数的状态转移到了第i-1个随机身上了。
+	private List<Integer> simpleFloyd(List<Integer> list, int count, int start, int end) {
+		if (count == 0) {
+		return list;
+		}
+		list = simpleFloyd(list, count - 1, start, end - 1);
+		int random = NumberUtils.randomInteger(start, end);
+		if (list.contains(random)) {
+		list.add(end);
+		}
+		else {
+		list.add(random);
+		}
+		return list;
+		}
+	
+
+五 迭代Floyd随机算法
+	思路与上面的递归Floyd随机算法是相似的，不过，这里我们加入了一个变量来做优化。就不需要再去递归了。
+	private List<Integer> iterationFloyd(int start, int end, int count) {
+		System.out.println("迭代Floyd随机算法：");
+		List<Integer> list = new ArrayList<>();
+		for (int i = end - count + 1;
+		i < end;
+		i++) {
+		int random = NumberUtils.randomInteger(start, i);
+		if (list.contains(random)) {
+		list.add(i);
+		}
+		else {
+		list.add(random);
+		}
+		}
+		return list;
+		}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+		
