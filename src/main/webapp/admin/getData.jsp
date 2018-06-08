@@ -55,6 +55,13 @@
         }
 
 
+        //下拉框
+        $('#dataType').combobox({
+            data: data,
+            valueField: 'code',
+            textField: 'description'}
+        );
+
     </script>
 </head>
 <body style="margin: 10px">
@@ -74,7 +81,19 @@
                 </td>
             </tr>
 
+            <td width="100px">产品列表：</td>
+            <td><input type="text" id="dataType" name="dataType" style="width: 150px;" value=""/></td>
             <tr>
+
+            <td width="100px">样本信息：</td>
+                <td><input type="text" id="dataInfo" name="dataInfo" style="width: 150px;" value=""/></td>
+            <tr>
+
+            <td width="100px">记录人员：</td>
+                <td><input type="text" id="dataUser" name="dataUser" style="width: 150px;" value=""/></td>
+            <tr>
+
+
                 <td></td>
                 <td>
                 <a href="javascript:submitData()" class="easyui-linkbutton" data-options="iconCls:'icon-submit'">上传数据</a>
