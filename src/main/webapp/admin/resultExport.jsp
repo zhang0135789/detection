@@ -60,6 +60,16 @@
 	}
 	
 </script>
+
+<style type="text/css">
+	body{padding:0;margin:0;}
+	table{border:#95b8e7 1px solid; border-collapse:collapse; border-spacing:0; text-align:center; font:normal 12px "\5FAE\8F6F\96C5\9ED1";color:#444;}
+	table th{height:28px; line-height:28px; background:-webkit-linear-gradient(#eff5fe,#e0ecff); background:-moz-linear-gradient(#eff5fe,#e0ecff); background:-o-linear-gradient(#eff5fe,#e0ecff); background:linear-gradient(#eff5fe,#e0ecff);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#eff5fe', endColorstr='#e0ecff', GradientType=0); border-bottom:#95b8e7 1px solid; border-right:#95b8e7 1px dotted;}
+	table td{height:28px; line-height:28px; border:#95b8e7 1px dotted; padding:0px;}
+	table tr:nth-child(odd){background: #aed2ee;}
+	table tr:hover{background: #2e51ff;}
+</style>
+
 </head>
 <body style="margin: 1px">
 <table id="dg" title="分析结果导出" class="easyui-datagrid"
