@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50722
+Source Server Version : 50624
 Source Host           : localhost:3306
 Source Database       : db_detection
 
 Target Server Type    : MYSQL
-Target Server Version : 50722
+Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2018-06-09 13:54:53
+Date: 2018-06-09 23:12:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,6 +21,14 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `t_analyze`;
 CREATE TABLE `t_analyze` (
   `dataId` varchar(60) NOT NULL,
+  `rsxn` varchar(255) DEFAULT NULL COMMENT '燃烧性能',
+  `yhwz` varchar(255) DEFAULT NULL COMMENT '有害物质',
+  `sld` varchar(255) DEFAULT NULL COMMENT '色牢度',
+  `zwql` varchar(255) DEFAULT NULL COMMENT '织物强力',
+  `ccwd` varchar(255) DEFAULT NULL COMMENT '尺寸稳定性',
+  `kqqqm` varchar(255) DEFAULT NULL COMMENT '抗起球起毛性',
+  `mcld` varchar(255) DEFAULT NULL COMMENT '摩擦牢度',
+  `fsx` varchar(255) DEFAULT NULL COMMENT '防水性',
   PRIMARY KEY (`dataId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='分析结果表';
 
@@ -34,6 +42,9 @@ CREATE TABLE `t_analyze` (
 DROP TABLE IF EXISTS `t_analyzemonth`;
 CREATE TABLE `t_analyzemonth` (
   `dataId` varchar(60) NOT NULL,
+  `dataType` varchar(255) DEFAULT NULL COMMENT '产品类型',
+  `dataMonth` varchar(255) DEFAULT NULL COMMENT '产品月份',
+  `dataXishu` varchar(255) DEFAULT NULL COMMENT '产品系数',
   PRIMARY KEY (`dataId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='月合格率关系表';
 
@@ -47,6 +58,15 @@ CREATE TABLE `t_analyzemonth` (
 DROP TABLE IF EXISTS `t_anayzecontrast`;
 CREATE TABLE `t_anayzecontrast` (
   `dataId` varchar(60) NOT NULL,
+  `dataType` varchar(255) DEFAULT NULL,
+  `rsxn` varchar(255) DEFAULT NULL COMMENT '燃烧性能所占比例',
+  `yhwz` varchar(255) DEFAULT NULL COMMENT '有害物质所占比例',
+  `sld` varchar(255) DEFAULT NULL COMMENT '色牢度所占比例',
+  `zwql` varchar(255) DEFAULT NULL COMMENT '织物强力所占比例',
+  `ccwd` varchar(255) DEFAULT NULL COMMENT '尺寸稳定性所占比例',
+  `kqqqm` varchar(255) DEFAULT NULL COMMENT '抗起球起毛性所占比例',
+  `mcld` varchar(255) DEFAULT NULL COMMENT '摩擦牢度所占比例',
+  `fsx` varchar(255) DEFAULT NULL COMMENT '防水性所占比例',
   PRIMARY KEY (`dataId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -155,7 +175,7 @@ CREATE TABLE `t_databaseinfo` (
   `dataType` varchar(255) DEFAULT NULL COMMENT '产品类型',
   `dataInfo` varchar(255) DEFAULT NULL COMMENT '样本信息',
   `dataUser` varchar(255) DEFAULT NULL COMMENT '记录人员',
-  `dateMounth` varchar(60) DEFAULT NULL COMMENT '记录月份',
+  `dataMounth` varchar(60) DEFAULT NULL COMMENT '记录月份',
   `createDate` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `updateDate` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`dataId`)
@@ -171,8 +191,16 @@ CREATE TABLE `t_databaseinfo` (
 DROP TABLE IF EXISTS `t_forecast`;
 CREATE TABLE `t_forecast` (
   `dataId` varchar(60) NOT NULL,
+  `rsxn` varchar(255) DEFAULT NULL COMMENT '燃烧性能',
+  `yhwz` varchar(255) DEFAULT NULL COMMENT '有害物质',
+  `sld` varchar(255) DEFAULT NULL COMMENT '色牢度',
+  `zwql` varchar(255) DEFAULT NULL COMMENT '织物强力',
+  `ccwd` varchar(255) DEFAULT NULL COMMENT '尺寸稳定性',
+  `kqqqm` varchar(255) DEFAULT NULL COMMENT '抗起球起毛性',
+  `mcld` varchar(255) DEFAULT NULL COMMENT '摩擦牢度',
+  `fsx` varchar(255) DEFAULT NULL COMMENT '防水性',
   PRIMARY KEY (`dataId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='预测结果表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='预测结果表';
 
 -- ----------------------------
 -- Records of t_forecast
@@ -184,9 +212,45 @@ CREATE TABLE `t_forecast` (
 DROP TABLE IF EXISTS `t_forecastmonth`;
 CREATE TABLE `t_forecastmonth` (
   `dataId` varchar(60) NOT NULL,
+  `dataType` varchar(255) DEFAULT NULL COMMENT '产品类型',
+  `dataMonth` varchar(255) DEFAULT NULL COMMENT '产品月份',
+  `dataXishu` varchar(255) DEFAULT NULL COMMENT '产品系数',
   PRIMARY KEY (`dataId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='按月预测合格率表';
 
 -- ----------------------------
 -- Records of t_forecastmonth
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for t_module
+-- ----------------------------
+DROP TABLE IF EXISTS `t_module`;
+CREATE TABLE `t_module` (
+  `module_id` varchar(255) NOT NULL,
+  `name` varchar(255) DEFAULT NULL COMMENT '权限标识',
+  `ctype` varchar(255) DEFAULT NULL COMMENT '类型',
+  `order_no` int(11) DEFAULT NULL COMMENT '排序号',
+  `remark` varchar(255) DEFAULT NULL COMMENT '说明',
+  `create_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`module_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_module
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for t_rolemodule
+-- ----------------------------
+DROP TABLE IF EXISTS `t_rolemodule`;
+CREATE TABLE `t_rolemodule` (
+  `module_id` varchar(50) NOT NULL COMMENT '模块id',
+  `role_id` varchar(50) NOT NULL COMMENT '角色id(用户id)',
+  PRIMARY KEY (`module_id`,`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户模块关联表';
+
+-- ----------------------------
+-- Records of t_rolemodule
 -- ----------------------------
