@@ -54,7 +54,7 @@
 <body style="margin: 1px">
 <table id="dg" title="预测结果" class="easyui-datagrid"
    fitColumns="true" pagination="true" rownumbers="true"
-   url="<%=path%>/admin/data/list.do" fit="true" toolbar="#tb">
+   url="<%=path%>/admin/data/list.do" fit="true" toolbar="#tb" style="background-image: url('../static/images/1120.jpg')">
    <thead>
    	<tr>
 		<th field="cb" checkbox="true" align="center"></th>

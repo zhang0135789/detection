@@ -53,8 +53,8 @@
 
 </script>
 </head>
-<body style="margin: 10px">
-<div id="p" class="easyui-panel" title="抽样检测" style="padding: 10px">
+<body style="margin: 10px" background="../static/images/1120.jpg">
+<div id="p" class="easyui-panel" title="抽样检测" style="padding: 10px ;background-image: url('../static/images/1120.jpg')" >
  	<table cellspacing="20px">
    		<tr>
    			<td width="100px">抽样检测数据（标识）：</td>

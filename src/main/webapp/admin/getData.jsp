@@ -56,21 +56,17 @@
 
 
         //下拉框
-        $('#dataType').combobox({
-            data: data,
-            valueField: 'code',
-            textField: 'description'}
-        );
 
     </script>
 </head>
-<body style="margin: 10px">
-<div id="p" class="easyui-panel" title="" style="padding: 10px">
+<body style="margin: 10px" background="../static/images/1120.jpg">
+<div id="p" class="easyui-panel" title="" style="padding: 10px ;background-image: url('../static/images/1120.jpg') " >
     <form id="formflag"   method="post" enctype="multipart/form-data" >
-        <table cellspacing="20px">
+        <table cellspacing="20px" >
             <tr>
                 <td width="100px">采集数据名称：</td>
                 <td><input type="text" id="dataName" name="dataName" style="width: 150px;" value=""/></td>
+                <td width="900px"></td>
             </tr>
             <tr>
                 <td width="80px">上传数据：</td>
@@ -81,19 +77,43 @@
                 </td>
             </tr>
 
-            <td width="100px">产品列表：</td>
-            <td><input type="text" id="dataType" name="dataType" style="width: 150px;" value=""/></td>
             <tr>
+                <td width="100px">产品类型：</td>
+                <td>
+                    <select id="dataType" class="easyui-combobox" name="dataType" >
+                        <option value="A">家私纺织品</option><option value="B">布艺纺织品</option><option value="C">人造纺织品</option>
 
-            <td width="100px">样本信息：</td>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td width="100px">产品月份：</td>
+                <td>
+                    <select id="dateMounth" class="easyui-combobox" name="dateMounth" >
+                        <option value="1">1月</option><option value="2">2月</option><option value="3">3月</option>
+
+                        <option value="4">4月</option><option value="5">5月</option><option value="6">6月</option>
+
+                        <option value="7">7月</option><option value="8">8月</option><option value="9">9月</option>
+
+                        <option value="10">10月</option><option value="11">11月</option><option value="12">12月</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td width="100px">样本信息：</td>
                 <td><input type="text" id="dataInfo" name="dataInfo" style="width: 150px;" value=""/></td>
-            <tr>
+            </tr>
 
-            <td width="100px">记录人员：</td>
+            <tr>
+                <td width="100px">记录人员：</td>
                 <td><input type="text" id="dataUser" name="dataUser" style="width: 150px;" value=""/></td>
+            </tr>
+
+
             <tr>
-
-
                 <td></td>
                 <td>
                 <a href="javascript:submitData()" class="easyui-linkbutton" data-options="iconCls:'icon-submit'">上传数据</a>

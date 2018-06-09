@@ -51,8 +51,8 @@
 
 </script>
 </head>
-<body style="margin: 10px">
-<div id="p" class="easyui-panel" title="预测界面" style="padding: 10px">
+<body style="margin: 10px" background="../static/images/1120.jpg">
+<div id="p" class="easyui-panel" title="预测界面" style="padding: 10px ;background-image: url('../static/images/1120.jpg')">
  	<table cellspacing="20px">
    		<tr>
    			<td width="80px">预测数据（标识符）：</td>
