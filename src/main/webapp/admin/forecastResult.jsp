@@ -48,6 +48,20 @@
              window.parent.openTab('抽样检测详情', 'forecastResultData.jsp?id='+row.id+'&dataName='+row.dataName+'&dataId='+row.dataId +'&rst2='+row.rst2, 'icon-writeblog');
          }
 	}
+
+    function openDataMonthTab() {
+        var selectedRows=$("#dg").datagrid("getSelections");
+        if(selectedRows.length!=1){
+            $.messager.alert("系统提示","请选择一条数据！");
+            return;
+        }
+        var row=selectedRows[0];
+        if(row.stateForecast != 1) {
+            $.messager.alert("系统提示","请先预测该数据！");
+        }else {
+            window.parent.openTab('月分析结果', 'forecastResultMonthData.jsp?id='+row.id+'&dataName='+row.dataName+'&dataId='+row.dataId +'&rst2='+row.rst2, 'icon-writeblog');
+        }
+	}
 	
 </script>
 
@@ -61,7 +75,7 @@
 	table tr:hover{background: #2e51ff;}
 </style>
 </head>
-<body style="margin: 1px">
+<body style="margin: 1px;background-image: url('../static/images/1120.jpg')">
 <table id="dg" title="预测结果" class="easyui-datagrid"
    fitColumns="true" pagination="true" rownumbers="true"
    url="<%=path%>/admin/data/list.do" fit="true" toolbar="#tb" style="background-image: url('../static/images/1120.jpg')">
@@ -82,6 +96,7 @@
  <div id="tb">
  	<div>
  		<a href="javascript:openDataModifyTab()" class="easyui-linkbutton" iconCls="icon-search" plain="true">查看</a>
+		<a href="javascript:openDataMonthTab()" class="easyui-linkbutton" iconCls="icon-search" plain="true">月预测结果</a>
  		<%--<a href="javascript:deleteBlog()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>--%>
  	</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
  	<div>

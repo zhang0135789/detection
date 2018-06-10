@@ -53,6 +53,49 @@
              window.parent.openTab('抽样检测详情', 'analyzeResultData.jsp?id='+row.id+'&dataName='+row.dataName+'&dataId='+row.dataId +'&rst='+row.rst, 'icon-writeblog');
          }
 	}
+
+
+	function openDataMonthTab() {
+        var selectedRows=$("#dg").datagrid("getSelections");
+
+
+        if(selectedRows.length!=1){
+            $.messager.alert("系统提示","请选择一条数据！");
+            return;
+        }
+        var row=selectedRows[0];
+        var anResult = 0;
+        if(row.anResult == "合格"){
+            anResult = 1;
+        }
+
+        if(row.stateAnalyze != 1){
+            $.messager.alert("系统提示","无法查看信息，请先检测数据！");
+        }else {
+            window.parent.openTab('月抽样检测详情', 'analyzeResultMonthData.jsp?id='+row.id+'&dataName='+row.dataName+'&dataId='+row.dataId +'&rst='+row.rst, 'icon-writeblog');
+        }
+    }
+
+    function openDataContrastTab() {
+        var selectedRows=$("#dg").datagrid("getSelections");
+
+
+        if(selectedRows.length!=1){
+            $.messager.alert("系统提示","请选择一条数据！");
+            return;
+        }
+        var row=selectedRows[0];
+        var anResult = 0;
+        if(row.anResult == "合格"){
+            anResult = 1;
+        }
+
+        if(row.stateAnalyze != 1){
+            $.messager.alert("系统提示","无法查看信息，请先检测数据！");
+        }else {
+            window.parent.openTab('指标对比详情详情', 'analyzeResultContrastData.jsp?id='+row.id+'&dataName='+row.dataName+'&dataId='+row.dataId +'&rst='+row.rst, 'icon-writeblog');
+        }
+    }
 	
 </script>
 <style type="text/css">
@@ -86,6 +129,8 @@
  <div id="tb">
  	<div>
  		<a href="javascript:openDataModifyTab()" class="easyui-linkbutton" iconCls="icon-search" plain="true">查看</a>
+        <a href="javascript:openDataMonthTab()" class="easyui-linkbutton" iconCls="icon-search" plain="true">月分析结果</a>
+        <a href="javascript:openDataContrastTab()" class="easyui-linkbutton" iconCls="icon-search" plain="true">指标对比</a>
  		<%--<a href="javascript:deleteData()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>--%>
  	</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
  	<div>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>预测结果页面</title>
+<title>抽样分析页面</title>
 <link rel="stylesheet" type="text/css" href="<%=path%>/static/jquery-easyui-1.3.3/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="<%=path%>/static/jquery-easyui-1.3.3/themes/icon.css">
 <script type="text/javascript" src="<%=path%>/static/jquery-easyui-1.3.3/jquery.min.js"></script>
@@ -28,18 +28,10 @@
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
     <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
     <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
-<script type="text/javascript">
 
-
-
-
-
-
-
-</script>
 </head>
 <body style="margin: 10px;background-image: url('../static/images/1120.jpg')">
-<div id="p" class="easyui-panel" title="预测结果" style="padding: 10px">
+<div id="p" class="easyui-panel" title="抽样检测" style="padding: 10px">
  	<table cellspacing="20px">
    		<tr>
    			<td width="100px">抽样检测数据：</td>
@@ -50,29 +42,32 @@
    		</tr>
 
    		<tr>
-   			<td valign="top">预测进度：</td>
+   			<td valign="top">检测进度：</td>
    			<td>
                 <div  class="easyui-progressbar" data-options="value:100" style="width:400px;"></div>
             </td>
             <td>
                 <div id="hege" hidden="true"><font color="red">检测中...</font></div>
-                <div id="buhege" ><font color="red">预测完成</font></div>
+                <div id="buhege" ><font color="red">检测完成</font></div>
             </td>
    		</tr>
 
         <tr>
-            <td>预测结果折线图：</td>
+            <td>抽样检折线状图：</td>
             <td>
                 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                <div id="main" style="width: 600px;height:400px;"></div>
+                <div id="main" style="width: 800px;height:400px;"></div>
             </td>
         </tr>
 
    		<tr>
-            <%--<div ><font color="red">--%>
-                <%--<c:if test="${param.foResult == 1 }">合格</c:if>--%>
-                <%--<c:if test="${param.foResult == 0 }">不合格</c:if>--%>
-            <%--</font></div>--%>
+   			<%--<td>本次抽检结果：</td>--%>
+   			<%--<td>--%>
+                <%--<div ><font color="red">--%>
+                    <%--<c:if test="${param.anResult == 1 }">合格</c:if>--%>
+                    <%--<c:if test="${param.anResult == 0 }">不合格</c:if>--%>
+                <%--</font></div>--%>
+   			<%--</td>--%>
    		</tr>
    	</table>
  </div>
@@ -85,8 +80,8 @@
     // 指定图表的配置项和数据
     option = {
         title : {
-            text: '纺织企业产品合格率预测',
-            subtext: '预测内容'
+            text: '纺织企业产品合格率',
+            subtext: '抽检内容内容'
         },
         tooltip : {
             trigger: 'axis'
@@ -109,7 +104,7 @@
             {
                 type : 'category',
                 boundaryGap : false,
-                data : ['产品1','产品2','产品3','产品4','产品5','产品6','产品7','产品8']
+                data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
             }
         ],
         yAxis : [
@@ -121,17 +116,16 @@
             }
         ],
         series : [{
-                name:'数据',
-                type:'line',
-                data:[${param.rst2}]
-                }]
+            name:'数据',
+            type:'line',
+            data:['40','60','30','70','50','66','88','93','50','70','77','84']
+        }]
     };
 
 
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
 </script>
-
 
 </body>
 </html>
