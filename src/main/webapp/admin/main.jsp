@@ -119,12 +119,18 @@
 <div region="west" style="width: 200px" title="导航菜单" split="true">
 	<div class="easyui-accordion" data-options="fit:true,border:false">
 		<div title="数据收集系统" data-options="selected:true,iconCls:'icon-item'" style="padding: 10px">
-			<a href="javascript:openTab('采集数据','getData.jsp','icon-writeblog')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-writeblog'" style="width: 150px">采集数据</a>
-			<%--<a href="javascript:openTab('评论审核','commentReview.jsp','icon-review')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-review'" style="width: 150px">评论审核</a>--%>
+			<a href="javascript:openTab('手工录入','getData.jsp','icon-writeblog')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-writeblog'" style="width: 150px">手工录入</a>
+			<a href="javascript:openTab('自动录入','getDataAuto.jsp','icon-writeblog')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-writeblog'" style="width: 150px">自动录入</a>
+
+		<%--<a href="javascript:openTab('评论审核','commentReview.jsp','icon-review')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-review'" style="width: 150px">评论审核</a>--%>
 		</div>
 		<div title="数据分析"  data-options="iconCls:'icon-bkgl'" style="padding:10px;">
-			<a href="javascript:openTab('分析','analyze.jsp','icon-writeblog')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-writeblog'" style="width: 150px;">分析</a>
-			<a href="javascript:openTab('分析结果','analyzeResult.jsp','icon-bkgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-bkgl'" style="width: 150px;">分析结果</a>
+			<a href="javascript:openTab('品种分析','analyze.jsp','icon-writeblog')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-writeblog'" style="width: 150px;">品种分析</a>
+			<a href="javascript:openTab('按月分析','analyze.jsp','icon-writeblog')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-writeblog'" style="width: 150px;">按月分析</a>
+			<a href="javascript:openTab('性能分析','analyze.jsp','icon-writeblog')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-writeblog'" style="width: 150px;">性能分析</a>
+			<a href="javascript:openTab('品种分析结果','analyzeResult.jsp','icon-bkgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-bkgl'" style="width: 150px;">品种分析结果</a>
+			<a href="javascript:openTab('按月分析结果','analyzeResult.jsp','icon-bkgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-bkgl'" style="width: 150px;">按月分析结果</a>
+			<a href="javascript:openTab('性能分析结果','analyzeResult.jsp','icon-bkgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-bkgl'" style="width: 150px;">性能分析结果</a>
 		</div>
 		<%--<div title="分析结果" data-options="iconCls:'icon-bklb'" style="padding:10px">
 			<a href="javascript:openTab('博客类别信息管理','blogTypeManage.jsp','icon-bklb')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-bklb'" style="width: 150px;">博客类别信息管理</a>
@@ -132,6 +138,7 @@
 		<div title="预测"  data-options="iconCls:'icon-plgl'" style="padding:10px">
 			<a href="javascript:openTab('预测','forecast.jsp','icon-review')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-review'" style="width: 150px">预测</a>
 			<a href="javascript:openTab('预测结果','forecastResult.jsp','icon-plgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-plgl'" style="width: 150px;">预测结果</a>
+			<a href="javascript:openTab('月预测结果','forecastResult.jsp','icon-plgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-plgl'" style="width: 150px;">月预测结果</a>
 		</div>
 		<div title="生成报表"  data-options="iconCls:'icon-grxx'" style="padding:10px">
 			<a href="javascript:openTab('分析结果导出','resultExport.jsp','icon-grxxxg')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-grxxxg'" style="width: 150px;">分析结果导出</a>
