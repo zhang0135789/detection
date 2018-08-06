@@ -43,3 +43,4 @@ target/detection/login.jsp
 target/detection/mainTemp.jsp
 target/detection/static/
 target/generated-sources/
+/target/
